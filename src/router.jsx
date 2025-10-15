@@ -1,6 +1,7 @@
 import { createBrowserRouter } from "react-router-dom";
 import App from "./App";
 import MainPage from "./pages/MainPage";
+import PDFTestPage from "./pages/PDFTestPage";
 
 const router = createBrowserRouter([
   {
@@ -10,6 +11,10 @@ const router = createBrowserRouter([
       {
         index: true,
         element: <MainPage />,
+      },
+      {
+        path: "pdf-test",
+        element: <PDFTestPage />,
       },
     ],
   },
