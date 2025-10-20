@@ -1,7 +1,9 @@
 import { createBrowserRouter } from "react-router-dom";
 import App from "./App";
 import MainPage from "./pages/MainPage";
-import PDFTestPage from "./pages/PDFTestPage";
+import CreateSessionPage from "./pages/CreateSession/CreateSessionPage";
+import PresenterViewPage from "./pages/PresenterView/PresenterViewPage";
+import AudienceViewPage from "./pages/AudienceView/AudienceViewPage";
 
 const router = createBrowserRouter([
   {
@@ -13,11 +15,21 @@ const router = createBrowserRouter([
         element: <MainPage />,
       },
       {
-        path: "pdf-test",
-        element: <PDFTestPage />,
+        path: "create-presentation",
+        element: <CreateSessionPage />,
+      },
+      {
+        path: "presentation",
+        element: <PresenterViewPage/>,
+      },
+      {
+        path: "audience",
+        element: <AudienceViewPage/>,
       },
     ],
   },
 ]);
 
 export default router;
+
+

@@ -1,61 +1,64 @@
-import React from 'react';
-import { Link } from 'react-router-dom';
+import React, { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 
 const MainPage = () => {
+  const [selectedFile, setSelectedFile] = useState(null);
+  const navigate = useNavigate();
+
+  const handleFileSelect = (event) => {
+    const file = event.target.files[0];
+    if (file && file.type === 'application/pdf') {
+      setSelectedFile(file);
+    } else {
+      alert('PDF 파일만 선택해주세요!');
+    }
+  };
+
+  const handleStartPresentation = () => {
+    if (selectedFile) {
+      navigate('/create-presentation', { 
+        state: { pdfFile: selectedFile, fileName: selectedFile.name } 
+      });
+    } else {
+      alert('먼저 PDF 파일을 업로드해주세요!');
+    }
+  };
+
   return (
-    <div style={{ padding: '40px', textAlign: 'center' }}>
-      <h1 style={{ color: '#4A90E2', marginBottom: '20px' }}>
-        🎤 보이니 (Boini)
-      </h1>
-      <p style={{ fontSize: '18px', color: '#666', marginBottom: '40px' }}>
-        실시간 발표 동기화 플랫폼
-      </p>
-      
-      <div style={{ display: 'flex', gap: '20px', justifyContent: 'center', flexWrap: 'wrap' }}>
-        <button 
-          style={{
-            padding: '15px 30px',
-            backgroundColor: '#4A90E2',
-            color: 'white',
-            border: 'none',
-            borderRadius: '8px',
-            fontSize: '16px',
-            cursor: 'pointer'
-          }}
-        >
-          📊 발표 시작하기
-        </button>
-        
-        <button 
-          style={{
-            padding: '15px 30px',
-            backgroundColor: '#7ED321',
-            color: 'white',
-            border: 'none',
-            borderRadius: '8px',
-            fontSize: '16px',
-            cursor: 'pointer'
-          }}
-        >
-          👥 청중으로 참여
-        </button>
-        
-        <Link 
-          to="/pdf-test"
-          style={{
-            padding: '15px 30px',
-            backgroundColor: '#F5A623',
-            color: 'white',
-            border: 'none',
-            borderRadius: '8px',
-            fontSize: '16px',
-            textDecoration: 'none',
-            display: 'inline-block'
-          }}
-        >
-          📄 PDF 테스트
-        </Link>
-      </div>
+    <div style={{ 
+      minHeight: '100vh', 
+      display: 'flex', 
+      flexDirection: 'column',
+      justifyContent: 'center',
+      alignItems: 'center',
+      padding: '40px'
+    }}>
+      <input
+        type="file"
+        accept=".pdf"
+        onChange={handleFileSelect}
+        style={{ 
+          marginBottom: '20px',
+          padding: '10px',
+          fontSize: '16px'
+        }}
+      />
+
+      <button 
+        onClick={handleStartPresentation}
+        disabled={!selectedFile}
+        style={{
+          padding: '15px 30px',
+          backgroundColor: selectedFile ? '#4A90E2' : '#ccc',
+          color: 'white',
+          border: 'none',
+          borderRadius: '8px',
+          fontSize: '16px',
+          cursor: selectedFile ? 'pointer' : 'not-allowed'
+        }}
+      >
+        발표 시작하기
+      </button>
     </div>
   );
 };
