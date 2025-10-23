@@ -1,11 +1,37 @@
-import React from "react";
+import React, { useState } from "react";
+import AudiencePanel from "../../components/AudiencePanel";
+import SidebarSlides from "../../components/SidebarSlides";
+import { PageContainer, RightPanelContainer } from "./AudienceViewPage.styles";
+import PeopleSVG from "../../assets/images/people.svg";
+import SlideViewer from "../../components/SlideViewer";
 
 const AudienceViewPage = () => {
-    return (
-        <div>
-            청중 페이지입니다
-        </div>
-    );
+  // 임시 슬라이드 데이터
+  const [slides] = useState([
+    PeopleSVG,
+    PeopleSVG,
+    PeopleSVG,
+    PeopleSVG,
+    PeopleSVG,
+  ]);
+
+  const [currentSlide, setCurrentSlide] = useState(0);
+
+  return (
+    <PageContainer>
+      {/* 왼쪽 슬라이드 바 */}
+      <SidebarSlides
+        slides={slides}
+        currentSlide={currentSlide}
+        setCurrentSlide={setCurrentSlide}
+      />
+      <SlideViewer slides={slides} currentSlide={currentSlide} />
+      {/* 오른쪽 AudiencePanel */}
+      <RightPanelContainer>
+        <AudiencePanel />
+      </RightPanelContainer>
+    </PageContainer>
+  );
 };
 
 export default AudienceViewPage;
