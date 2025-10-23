@@ -20,28 +20,26 @@ export const FocusBar = styled.div`
   height: 52px;
   padding: 0 16px;
   margin-bottom: 24px;
-
 `;
 
 /* 상태 표시 (아이콘 + 텍스트) */
 export const FocusLeft = styled.div`
-  color: #5C5C5C;
+  color: #5c5c5c;
   font-family: Pretendard;
   font-size: 18px;
   font-style: normal;
   font-weight: 600;
-  line-height: 26px; /* 144.444% */
+  line-height: 26px;
   letter-spacing: -0.45px;
   display: inline-flex;
   padding: 13px 20px;
   justify-content: center;
   align-items: center;
   border-radius: 100px;
-  border: 1px solid #EAEAEA;
-  background: #EAEAEA;
-  gap:6px;
+  border: 1px solid #eaeaea;
+  background: #eaeaea;
+  gap: 6px;
 `;
-
 
 /* 슬라이드 본문 */
 export const SlideBox = styled.div`

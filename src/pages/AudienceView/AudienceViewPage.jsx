@@ -1,9 +1,14 @@
 import React, { useState } from "react";
-import AudiencePanel from "../../components/AudiencePanel";
+import AudiencePanel from "../../components/Audience/AudiencePanel";
 import SidebarSlides from "../../components/SidebarSlides";
-import { PageContainer, RightPanelContainer } from "./AudienceViewPage.styles";
+import {
+  PageContainer,
+  CenterContainer,
+  RightPanelContainer,
+} from "./AudienceViewPage.styles";
 import PeopleSVG from "../../assets/images/people.svg";
 import SlideViewer from "../../components/SlideViewer";
+import EmojiPanel from "../../components/Audience/EmojiPanel";
 
 const AudienceViewPage = () => {
   // 임시 슬라이드 데이터
@@ -25,7 +30,10 @@ const AudienceViewPage = () => {
         currentSlide={currentSlide}
         setCurrentSlide={setCurrentSlide}
       />
-      <SlideViewer slides={slides} currentSlide={currentSlide} />
+      <CenterContainer>
+        <SlideViewer slides={slides} currentSlide={currentSlide} />
+        <EmojiPanel />
+      </CenterContainer>
       {/* 오른쪽 AudiencePanel */}
       <RightPanelContainer>
         <AudiencePanel />
