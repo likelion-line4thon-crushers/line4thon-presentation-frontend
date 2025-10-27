@@ -1,14 +1,14 @@
+/* === SidebarStyles.js === */
 import styled from "styled-components";
 import playIcon from "../../assets/images/play.svg";
 
-
 export const Sidebar = styled.div`
-  width: 193px;
-  height: 1015px;
+  width: 10vw; /* 193px */
+  height: 94vh; /* 1015px */
   flex-shrink: 0;
-  border: 1px solid #EAEAEA;
-  background: #F5F5F5;
-  padding: 32px;
+  border: 0.05vw solid #eaeaea;
+  background: #f5f5f5;
+  padding: 1.7vh 1.7vw;
   overflow-y: auto;
   display: flex;
   flex-direction: column;
@@ -22,45 +22,39 @@ export const Sidebar = styled.div`
 export const SlideList = styled.div`
   display: flex;
   flex-direction: column;
-  gap: 12px;
+  gap: 0.6vh;
 `;
 
 export const SlideThumb = styled.div`
   display: flex;
   align-items: flex-start;
   justify-content: space-between;
-  width: 129px;       
-  height: 67px;       
-  padding: 4px 11px 4px 4px;
-  gap: 4px;
-  border: ${(p) => (p.$active ? "2px solid #4a90e2" : "1px solid #ddd")};
-  border-radius: 4px;
-  border: 1px solid #EAEAEA;
-  background: ${(p) => (p.$active ? "#303030" : "#FFF")}; 
+  width: 6.7vw; /* 129px */
+  height: 6.2vh; /* 67px */
+  padding: 0.4vh 0.5vw;
+  border: ${(p) => (p.$active ? "0.1vw solid #4a90e2" : "0.05vw solid #ddd")};
+  border-radius: 0.2vw;
+  background: ${(p) => (p.$active ? "#303030" : "#fff")};
   cursor: pointer;
   transition: 0.25s ease;
-
-  box-shadow: ${(p) =>
-    p.$active ? "0 2px 6px rgba(0,0,0,0.1)" : "none"};
-
-  position: relative; /* 삼각형 위치 기준 */
+  box-shadow: ${(p) => (p.$active ? "0 0.2vh 0.5vh rgba(0,0,0,0.1)" : "none")};
+  position: relative;
 
   &:hover {
     transform: scale(1.02);
   }
 
-  /* 선택된 상태에서 오른쪽 삼각형 유지 */
   ${(p) =>
     p.$active &&
     `
     &::after {
       content: "";
       position: absolute;
-      right: -15px;
+      right: -0.8vw;
       top: 50%;
       transform: translateY(-50%);
-      width: 12px;
-      height: 12px;
+      width: 0.6vw;
+      height: 0.6vw;
       background-image: url(${playIcon});
       background-size: contain;
       background-repeat: no-repeat;
@@ -70,26 +64,19 @@ export const SlideThumb = styled.div`
 `;
 
 export const SlideImage = styled.img`
-  width: 105px;
+  width: 5.5vw;
   height: 100%;
   object-fit: cover;
-  border-radius: 2px;
-  border: 1px solid #eee;
-  flex-shrink: 0;
+  border-radius: 0.1vw;
+  border: 0.05vw solid #eee;
 `;
 
 export const SlideIndex = styled.div`
-  width: 7px;
-  height: 14px;
-  font-size: 10px;
+  font-size: clamp(8px, 0.6vw, 10px);
   font-weight: 600;
-  line-height: 14px;
   color: ${(p) => (p.$active ? "#FFF" : "#303030")};
-  border-radius: 50%;
   display: flex;
   align-items: flex-start;
   justify-content: center;
   transition: 0.2s ease;
-  background: transparent;
-
 `;
