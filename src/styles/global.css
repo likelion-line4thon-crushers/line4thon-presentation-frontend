@@ -1,37 +1,23 @@
-/* Global styles */
-* {
+html,
+body,
+#root {
+  width: 100%;
+  height: 100%;
   margin: 0;
-  padding: 0;
-  box-sizing: border-box;
-}
-
-body {
-  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen",
-    "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue",
-    sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  background-color: #ffffff;
+  overflow: hidden;
+  background: #f7f8fa;
+  font-family: "Pretendard", -apple-system, BlinkMacSystemFont, "Segoe UI",
+    "Roboto", "Oxygen", "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans",
+    "Helvetica Neue", sans-serif;
   color: #333;
 }
 
-code {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New",
-    monospace;
-}
 
-/* App specific styles */
-.App {
-  text-align: center;
-  padding: 32px;
-}
-
-.App h1 {
-  color: #333;
-  margin-bottom: 16px;
-}
-
-.App p {
-  color: #666;
-  font-size: 17.6px;
+.stage {
+  position: fixed;
+  top: 0;
+  left: 0;
+  background: #fff;
+  transition: transform 0.15s ease;
+  transform-origin: top left;
 }
