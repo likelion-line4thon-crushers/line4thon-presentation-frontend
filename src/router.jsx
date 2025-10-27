@@ -20,16 +20,14 @@ const router = createBrowserRouter([
       },
       {
         path: "presentation",
-        element: <PresenterViewPage/>,
+        element: <PresenterViewPage />,
       },
       {
         path: "audience",
-        element: <AudienceViewPage/>,
+        element: <AudienceViewPage />,
       },
     ],
   },
 ]);
 
 export default router;
-
-
