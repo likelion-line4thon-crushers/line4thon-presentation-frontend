@@ -8,7 +8,7 @@ export const Main = styled.div`
   align-items: center;
   justify-content: flex-start;
   padding: 40px;
-  background: #f7f8fa;
+  background: #fff;
 `;
 
 /* 상단 집중 유도 바 */

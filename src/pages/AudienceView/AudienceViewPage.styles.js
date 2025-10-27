@@ -3,7 +3,7 @@ import styled from "styled-components";
 export const PageContainer = styled.div`
   display: flex;
   height: 100vh;
-  background-color: #f5f5f5;
+  background-color: #fff;
 `;
 
 export const CenterContainer = styled.div`
@@ -13,6 +13,7 @@ export const CenterContainer = styled.div`
   gap: 16px;
   padding: 10px;
   position: relative;
+  background: #fff;
 `;
 
 export const RightPanelContainer = styled.div`
