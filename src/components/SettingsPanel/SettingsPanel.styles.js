@@ -1,14 +1,15 @@
+/* === PanelStyles.js === */
 import styled from "styled-components";
 
 /* 전체 패널 */
 export const PanelWrapper = styled.aside`
-  width: 327px;
-  height: 1015px;
+  width: 17vw; /* 327px */
+  height: 94vh; /* 1015px */
   background: #ffffff;
   display: flex;
   flex-direction: column;
-  border-radius: 12px;
-  box-shadow: 0 1px 4px rgba(0, 0, 0, 0.08);
+  border-radius: 0.6vw;
+  box-shadow: 0 0.05vw 0.2vw rgba(0, 0, 0, 0.08);
   overflow-y: auto;
 `;
 
@@ -21,16 +22,14 @@ export const Section = styled.section`
 
 /* 상단 제목바 */
 export const Title = styled.h2`
-  height: 38px;
+  height: 3.5vh; /* 38px */
   margin: 0;
-  padding: 8px 12px;
+  padding: 0.75vh 0.6vw;
   font-family: Pretendard;
-  font-size: 15px;
+  font-size: clamp(12px, 0.8vw, 15px);
   font-weight: 600;
-  line-height: 22px;
   color: #303030;
-  letter-spacing: -0.3px;
-  border-bottom: 1px solid #eaeaea;
+  border-bottom: 0.05vw solid #eaeaea;
   background: #f9f9f9;
   display: flex;
   align-items: center;
@@ -40,23 +39,21 @@ export const Title = styled.h2`
 export const AudienceCountWrapper = styled.div`
   display: flex;
   align-items: center;
-  padding: 16px;
-  gap: 8px;
-  color: #5C5C5C;
+  padding: 1.5vh 0.8vw;
+  gap: 0.4vw;
+  color: #5c5c5c;
   font-family: Pretendard;
-  font-size: 16px;
+  font-size: clamp(13px, 0.9vw, 16px);
   font-weight: 600;
-  line-height: 24px;
-  letter-spacing: -0.4px;
-  border-radius: 20px;
-  border: 1px solid #EAEAEA;
-  background: #FAFAFA;
-  margin: 12px;
+  border-radius: 1vw;
+  border: 0.05vw solid #eaeaea;
+  background: #fafafa;
+  margin: 1vh 0.6vw;
 `;
 
 export const AudienceIcon = styled.img`
-  width: 24px;
-  height: 24px;
+  width: 1.2vw;
+  height: 1.2vw;
   object-fit: contain;
 `;
 
@@ -70,38 +67,33 @@ export const AudienceNum = styled.span`
 export const QuickTogglesGrid = styled.div`
   display: grid;
   grid-template-columns: 1fr 1fr;
-  gap: 10px;
-  padding: 0 12px 12px;
+  gap: 0.6vw;
+  padding: 0 0.6vw 1vh;
 `;
 
-
 export const ToggleLabel = styled.div`
-  color: #5C5C5C;
-  font-size: 16px;
+  color: #5c5c5c;
+  font-size: clamp(13px, 0.9vw, 16px);
   font-weight: 600;
-  line-height: 24px;
-  letter-spacing: -0.4px;
 `;
 
 export const ToggleDescription = styled.p`
   margin: 0;
   color: #838383;
-  font-size: 11px;
+  font-size: clamp(10px, 0.7vw, 12px);
   font-weight: 400;
-  line-height: 16px;
-  letter-spacing: -0.275px;
 `;
 
 /* 토글 박스 */
 export const ToggleBox = styled.div`
-  border-radius: 20px;
-  border: 1px solid #EAEAEA;
-  background: #FAFAFA;
-  padding: 16px;
+  border-radius: 1vw;
+  border: 0.05vw solid #eaeaea;
+  background: #fafafa;
+  padding: 1.5vh 0.8vw;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
-  gap: 4px;
+  gap: 0.3vh;
   transition: all 0.2s ease;
 
   &:hover {
@@ -122,55 +114,52 @@ export const ToggleBox = styled.div`
 /* 일반 토글 */
 export const ToggleInput = styled.input.attrs({ type: "checkbox" })`
   appearance: none;
-  width: 52px;
-  height: 28px;
-  margin-top: 30px;
+  width: 2.7vw; /* 52px */
+  height: 2.6vh; /* 28px */
+  margin-top: 2.8vh;
   border-radius: 100px;
-  background: #EDEDED;
+  background: #ededed;
   position: relative;
-  align-self: flex-end; /* 오른쪽 아래 정렬 */
+  align-self: flex-end;
   cursor: pointer;
-  outline: none;
   transition: background 0.25s ease;
 
   &:checked {
-    background:#E74D07;
+    background: #e74d07;
   }
 
   &::after {
     content: "";
     position: absolute;
-    top: 2px;
-    left: 2px;
-    width: 24px;
-    height: 24px;
+    top: 0.2vh;
+    left: 0.2vw;
+    width: 1.2vw;
+    height: 2.2vh;
     background: #fff;
     border-radius: 100px;
     transition: transform 0.25s ease;
   }
 
   &:checked::after {
-    transform: translateX(24px);
+    transform: translateX(1.2vw);
   }
 `;
 
-/* 단일 토글 중앙 정렬용 */
 export const SingleToggleInput = styled(ToggleInput)`
   align-self: center;
   margin-top: 0;
 `;
 
-/* 단일 토글 전용 박스 */
+/* 단일 토글 박스 */
 export const SingleToggleBox = styled.div`
-  border-radius: 20px;
-  border: 1px solid #EAEAEA;
-  background: #FAFAFA;
-  padding: 16px;
-  margin: 0 12px 12px;
+  border-radius: 1vw;
+  border: 0.05vw solid #eaeaea;
+  background: #fafafa;
+  padding: 1.5vh 0.8vw;
+  margin: 0 0.6vw 1vh;
   display: flex;
-  align-items: center; /* 중앙 기준 세로 정렬 */
+  align-items: center;
   justify-content: space-between;
-  gap: 4px;
   transition: all 0.2s ease;
 
   &:hover {
@@ -182,7 +171,7 @@ export const SingleToggleBox = styled.div`
     flex-direction: column;
     justify-content: center;
   }
-  
+
   &:has(input:checked) {
     background: #303030;
     border-color: #303030;
@@ -197,54 +186,49 @@ export const SingleToggleBox = styled.div`
 /* 라이브 질문 영역 */
 export const LiveBox = styled.div`
   flex-shrink: 0;
-  padding: 91px 0 32px;
+  padding: 8.5vh 0 3vh;
   display: flex;
   flex-direction: column;
   align-items: center;
-  margin: 16px;
-  border-radius: 20px;
-  border: 1px solid #EAEAEA;
-  background: #FAFAFA;
+  margin: 1.5vh 0.6vw;
+  border-radius: 1vw;
+  border: 0.05vw solid #eaeaea;
+  background: #fafafa;
 `;
 
 export const LiveWaitingIcon = styled.img`
-  width: 126px;
-  height: 126px;
-  flex-shrink: 0;
+  width: 6.5vw;
+  height: 12vh;
 `;
 
 export const LiveDesc = styled.div`
-  font-size: 14px;
+  font-size: clamp(12px, 0.8vw, 14px);
   color: #555;
-  margin: 16px 0;
+  margin: 1.5vh 0;
 `;
 
 export const LockIcon = styled.img`
-  width: 20px;
-  height: 20px;
+  width: 1vw;
+  height: 1vw;
   aspect-ratio: 1/1;
 `;
 
-
 export const LiveButton = styled.button`
-  margin: 8px;
-  gap: 6px;
+  margin: 0.7vh;
+  gap: 0.3vw;
   white-space: nowrap;
-  color: #5C5C5C;
+  color: #5c5c5c;
   text-align: center;
-  font-size: 13px;
-  font-style: normal;
+  font-size: clamp(12px, 0.8vw, 13px);
   font-weight: 600;
-  line-height: 18px; /* 138.462% */
-  letter-spacing: -0.325px;
-
+  line-height: 1.3;
   display: inline-flex;
-  padding: 11px 40px;
+  padding: 1vh 2vw;
   justify-content: center;
   align-items: center;
-  border-radius: 24.014px;
-  border: 2px solid var(--Font-01_White, #FFF);
-  background: rgba(247, 247, 251, 0.90);
-  box-shadow: 0 8px 12px 0 rgba(0, 0, 0, 0.12);
-  backdrop-filter: blur(6.003597736358643px);
+  border-radius: 1.2vw;
+  border: 0.1vw solid #fff;
+  background: rgba(247, 247, 251, 0.9);
+  box-shadow: 0 0.4vh 0.6vh rgba(0, 0, 0, 0.12);
+  backdrop-filter: blur(0.5vh);
 `;
