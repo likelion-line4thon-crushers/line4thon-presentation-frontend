@@ -1,65 +1,292 @@
-import React, { useState } from 'react';
-import { useNavigate } from 'react-router-dom';
+import React, { useState } from "react";
+import { useNavigate } from "react-router-dom";
+import styled, { css } from "styled-components";
+import BoiniSymbol from "../assets/images/Boini_logo.svg";
+import TitleSVG from "../assets/images/title.svg";
+
+
+/* === 전체 레이아웃 === */
+const MainLayout = styled.div`
+  display: grid;
+  grid-template-columns: 15vw 1fr 15vw;
+  width: 100vw;
+  height: 100%;
+  margin: 0 auto;
+  background: #fff;
+  border: 0.1vw solid #eaeaea;
+  box-sizing: border-box;
+`;
+
+/* === 좌우 사이드 === */
+const Side = styled.div`
+  background-color: #fff;
+  padding: 2% 6%;
+  height: 100%;
+  box-sizing: border-box;
+  border-radius: 0.6vw;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+`;
+
+const SideInner = styled.div`
+  width: 100%;
+  height: 100%;
+  border: 0.1vw dashed #eaeaea;
+  border-radius: 0.4vw;
+  background-image: repeating-linear-gradient(
+    135deg,               
+    #f3f3f3 0,
+    #f3f3f3 0.1vw,     
+    transparent 0.1vw,
+    transparent 0.3vw    
+  );
+  box-sizing: border-box;
+`;
+
+/* === 중앙 메인 영역 === */
+const CenterGrid = styled.div`
+  display: grid;
+  grid-template-rows: repeat(3, 1fr);
+  grid-template-columns: 12vw 1fr 1fr 12vw;
+  gap: 1.5vw;
+  width: 100%;
+  height: 100%;
+  padding: 2%;
+  box-sizing: border-box;
+  border: 0.1vw solid #eaeaea;
+  overflow: hidden;
+`;
+
+/* === 각 셀 === */
+const Box = styled.div`
+  border: 0.1vw solid #eaeaea;
+  border-radius: 0.6vw;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-sizing: border-box;
+  background: #fff;
+
+  ${({ striped }) =>
+    striped &&
+    css`
+        background-image: repeating-linear-gradient(
+        135deg,              /* ↘️ 오른쪽 위 → 왼쪽 아래 */
+        #f3f3f3 0,
+        #f3f3f3 0.1vw,       /* 🔹 더 얇게 */
+        transparent 0.1vw,
+        transparent 0.3vw    /* 🔹 더 촘촘하게 */
+      );
+    `}
+
+  img {
+    width: 2.5vw;
+    height: 2.5vw;
+  }
+`;
+
+/* === 중앙 컨텐츠 === */
+const CenterContent = styled.div`
+  grid-row: 2 / 3;
+  grid-column: 2 / 4;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  border-radius: 0.6vw;
+  background: rgba(255, 255, 255, 0.8);
+  padding: 2%;
+  box-sizing: border-box;
+`;
+
+const UploadBox = styled.div`
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 22vw;
+  height: 5vh;
+  border: 0.1vw solid #5C5C5C;
+  border-radius: 0.8vw;
+  background: #fff;
+  box-shadow: 0 0.2vh 0.5vh rgba(0, 0, 0, 0.04);
+  padding: 0 1vw;
+  transition: all 0.2s ease-in-out;
+  margin-bottom: 2vh;
+
+  &:hover {
+    border-color: #e8541e;
+    box-shadow: 0 0.2vh 0.6vh rgba(232, 84, 30, 0.1);
+  }
+
+  ${({ $dragging }) =>
+    $dragging &&
+    css`
+      border-color: #00aaff;
+      background: #f0faff;
+      box-shadow: 0 0 0.8vh rgba(0, 170, 255, 0.2);
+    `}
+
+  .file-name {
+    color: #888;
+    font-size: clamp(13px, 0.9vw, 15px);
+    flex: 1;
+    text-align: left;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    cursor: pointer;
+  }
+
+  .arrow {
+    font-size: 1.2vw;
+    color: #e8541e;
+    margin-left: 0.5vw;
+    cursor: pointer;
+    transition: transform 0.2s ease, color 0.2s ease;
+  }
+
+  .arrow:hover {
+    transform: translateX(0.3vw);
+    color: #cc3f13;
+  }
+`;
+
+const HiddenInput = styled.input`
+  display: none;
+`;
+
+const Button = styled.button`
+  padding: 1.3vh 1.8vw;
+  background-color: ${(props) => (props.disabled ? "#ccc" : "#e8541e")};
+  color: white;
+  border: none;
+  border-radius: 0.4vw;
+  font-size: clamp(14px, 1vw, 18px);
+  cursor: ${(props) => (props.disabled ? "not-allowed" : "pointer")};
+  transition: 0.2s;
+  &:hover {
+    background-color: ${(props) => (props.disabled ? "#ccc" : "#cc3f13")};
+  }
+`;
 
 const MainPage = () => {
   const [selectedFile, setSelectedFile] = useState(null);
+  const [isDragging, setIsDragging] = useState(false);
   const navigate = useNavigate();
 
   const handleFileSelect = (event) => {
     const file = event.target.files[0];
-    if (file && file.type === 'application/pdf') {
+    if (file && file.type === "application/pdf") {
       setSelectedFile(file);
     } else {
-      alert('PDF 파일만 선택해주세요!');
+      alert("PDF 파일만 선택해주세요!");
+    }
+  };
+
+  const handleDrop = (e) => {
+    e.preventDefault();
+    e.stopPropagation();
+    setIsDragging(false);
+
+    const file = e.dataTransfer.files[0];
+    if (file && file.type === "application/pdf") {
+      setSelectedFile(file);
+    } else {
+      alert("PDF 파일만 선택해주세요!");
     }
   };
 
   const handleStartPresentation = () => {
-    if (selectedFile) {
-      navigate('/create-presentation', { 
-        state: { pdfFile: selectedFile, fileName: selectedFile.name } 
-      });
-    } else {
-      alert('먼저 PDF 파일을 업로드해주세요!');
-    }
+    if (!selectedFile) return alert("PDF를 먼저 업로드해주세요!");
+    navigate("/create-presentation", {
+      state: { pdfFile: selectedFile, fileName: selectedFile.name },
+    });
   };
 
   return (
-    <div style={{ 
-      minHeight: '100vh', 
-      display: 'flex', 
-      flexDirection: 'column',
-      justifyContent: 'center',
-      alignItems: 'center',
-      padding: '40px'
-    }}>
-      <input
-        type="file"
-        accept=".pdf"
-        onChange={handleFileSelect}
-        style={{ 
-          marginBottom: '20px',
-          padding: '10px',
-          fontSize: '16px'
-        }}
-      />
+    <MainLayout>
+      {/* 좌측 */}
+      <Side>
+        <SideInner />
+      </Side>
 
-      <button 
-        onClick={handleStartPresentation}
-        disabled={!selectedFile}
-        style={{
-          padding: '15px 30px',
-          backgroundColor: selectedFile ? '#4A90E2' : '#ccc',
-          color: 'white',
-          border: 'none',
-          borderRadius: '8px',
-          fontSize: '16px',
-          cursor: selectedFile ? 'pointer' : 'not-allowed'
-        }}
-      >
-        발표 시작하기
-      </button>
-    </div>
+      {/* 중앙 */}
+      <CenterGrid>
+        {/* 1행 */}
+        <Box style={{ gridRow: 1, gridColumn: 1 }}>
+          <img src={BoiniSymbol} alt="icon" />
+        </Box>
+        <Box striped style={{ gridRow: 1, gridColumn: "2 / 4" }} /> {/* #2 */}
+        <Box style={{ gridRow: 1, gridColumn: 4 }}>
+          <img src={BoiniSymbol} alt="icon" />
+        </Box>
+
+        {/* 2행 */}
+        <Box striped style={{ gridRow: 2, gridColumn: 1 }} /> {/* #4 */}
+        <CenterContent>
+          <img
+            src={TitleSVG}
+            alt="발표가 달라진다"
+            style={{ width: "70%", height: "auto", marginBottom: "3vh", }}
+          />
+
+          <UploadBox
+            $dragging={isDragging}
+            onDragOver={(e) => {
+              e.preventDefault();
+              e.stopPropagation();
+              setIsDragging(true);
+            }}
+            onDragLeave={(e) => {
+              e.preventDefault();
+              e.stopPropagation();
+              setIsDragging(false);
+            }}
+            onDrop={handleDrop}
+            onClick={() => document.getElementById("pdfInput").click()}
+          >
+            <span className="file-name">
+              {selectedFile
+                ? selectedFile.name
+                : isDragging
+                  ? "여기에 파일을 놓으세요 📂"
+                  : "여기에 PDF 파일을 업로드 해주세요."}
+            </span>
+            <span className="arrow" onClick={(e) => {
+              e.stopPropagation();
+              handleStartPresentation();
+            }}>
+              ➜
+            </span>
+          </UploadBox>
+
+          <HiddenInput
+            id="pdfInput"
+            type="file"
+            accept=".pdf"
+            onChange={handleFileSelect}
+          />
+        </CenterContent>
+
+        <Box striped style={{ gridRow: "2 / 4", gridColumn: 4 }} /> {/* #6 */}
+
+        {/* 3행 */}
+        <Box style={{ gridRow: 3, gridColumn: 1 }}>
+          <img src={BoiniSymbol} alt="icon" />
+        </Box>
+        <Box striped style={{ gridRow: 3, gridColumn: 2 }} /> {/* #8 */}
+        <Box style={{ gridRow: 3, gridColumn: 3 }}>
+          <img src={BoiniSymbol} alt="icon" />
+        </Box>
+      </CenterGrid>
+
+      {/* 우측 */}
+      <Side>
+        <SideInner />
+      </Side>
+    </MainLayout>
   );
 };
 

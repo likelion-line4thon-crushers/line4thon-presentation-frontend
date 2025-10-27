@@ -7,7 +7,7 @@ export const Main = styled.div`
   flex-direction: column;
   align-items: center;
   justify-content: flex-start;
-  padding: 40px;
+  padding: 2vh 2vw;
   background: #f7f8fa;
 `;
 
@@ -16,48 +16,43 @@ export const FocusBar = styled.div`
   display: flex;
   align-self: flex-start;
   justify-content: flex-start;
-  width: 135px;
-  height: 52px;
-  padding: 0 16px;
-  margin-bottom: 24px;
-
+  width: 7vw; /* 135px */
+  height: 4.8vh; /* 52px */
+  padding: 0 0.8vw;
+  margin-bottom: 2.2vh;
 `;
 
-/* 상태 표시 (아이콘 + 텍스트) */
+/* 상태 표시 */
 export const FocusLeft = styled.div`
-  color: #5C5C5C;
+  color: #5c5c5c;
   font-family: Pretendard;
-  font-size: 18px;
-  font-style: normal;
+  font-size: clamp(14px, 1vw, 18px);
   font-weight: 600;
-  line-height: 26px; /* 144.444% */
-  letter-spacing: -0.45px;
   display: inline-flex;
-  padding: 13px 20px;
+  padding: 1.2vh 1vw;
   justify-content: center;
   align-items: center;
-  border-radius: 100px;
-  border: 1px solid #EAEAEA;
-  background: #EAEAEA;
-  gap:6px;
+  border-radius: 5vh;
+  border: 0.05vw solid #eaeaea;
+  background: #eaeaea;
+  gap: 0.3vw;
 `;
-
 
 /* 슬라이드 본문 */
 export const SlideBox = styled.div`
   background-color: white;
-  border-radius: 12px;
-  padding: 30px;
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
-  max-width: 1300x;
+  border-radius: 0.6vw;
+  padding: 2.8vh 1.5vw;
+  box-shadow: 0 0.4vh 1vh rgba(0, 0, 0, 0.1);
+  max-width: 67.7vw; /* 1300px */
   width: 100%;
   text-align: center;
 `;
 
 export const NavButton = styled.button`
-  padding: 8px 16px;
-  border: 1px solid #ddd;
-  border-radius: 6px;
-  background: ${(p) => (p.disabled ? "#f5f5f5" : "white")};
+  padding: 0.8vh 0.8vw;
+  border: 0.05vw solid #ddd;
+  border-radius: 0.3vw;
+  background: ${(p) => (p.disabled ? "#f5f5f5" : "#fff")};
   cursor: ${(p) => (p.disabled ? "not-allowed" : "pointer")};
 `;
