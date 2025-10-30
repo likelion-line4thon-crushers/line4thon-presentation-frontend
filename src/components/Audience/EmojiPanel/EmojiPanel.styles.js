@@ -44,8 +44,8 @@ export const EmojiItem = styled.div`
 `;
 
 export const EmojiIcon = styled.img`
-  width: 1.85vh;
-  height: 1.85vh;
+  width: 56px;
+  height: 56px;
   object-fit: contain;
   filter: grayscale(100%);
 `;
