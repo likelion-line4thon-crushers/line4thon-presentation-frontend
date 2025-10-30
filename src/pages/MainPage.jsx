@@ -3,6 +3,10 @@ import { useNavigate } from "react-router-dom";
 import styled, { css } from "styled-components";
 import BoiniSymbol from "../assets/images/Boini_logo.svg";
 import TitleSVG from "../assets/images/title.svg";
+import Emoji1 from "../assets/images/emoji1.svg";
+import Emoji2 from "../assets/images/emoji2.svg";
+import Emoji3 from "../assets/images/emoji3.svg";
+import Emoji4 from "../assets/images/emoji4.svg";
 
 
 /* === 전체 레이아웃 === */
@@ -48,8 +52,8 @@ const SideInner = styled.div`
 const CenterGrid = styled.div`
   display: grid;
   grid-template-rows: repeat(3, 1fr);
-  grid-template-columns: 12vw 1fr 1fr 12vw;
-  gap: 1.5vw;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 1.3vw;
   width: 100%;
   height: 100%;
   padding: 2%;
@@ -97,7 +101,9 @@ const CenterContent = styled.div`
   text-align: center;
   border-radius: 0.6vw;
   background: rgba(255, 255, 255, 0.8);
-  padding: 2%;
+  padding: 0.5vh;
+  margin: 0;
+  gap: 2.5vh;
   box-sizing: border-box;
 `;
 
@@ -105,7 +111,7 @@ const UploadBox = styled.div`
   display: flex;
   align-items: center;
   justify-content: space-between;
-  width: 22vw;
+  width: 91%;
   height: 5vh;
   border: 0.1vw solid #5C5C5C;
   border-radius: 0.8vw;
@@ -113,7 +119,7 @@ const UploadBox = styled.div`
   box-shadow: 0 0.2vh 0.5vh rgba(0, 0, 0, 0.04);
   padding: 0 1vw;
   transition: all 0.2s ease-in-out;
-  margin-bottom: 2vh;
+  margin-bottom: 0;
 
   &:hover {
     border-color: #e8541e;
@@ -216,11 +222,11 @@ const MainPage = () => {
       <CenterGrid>
         {/* 1행 */}
         <Box style={{ gridRow: 1, gridColumn: 1 }}>
-          <img src={BoiniSymbol} alt="icon" />
+          <img src={Emoji1} style={{ width: "12vw", height: "auto" }} alt="emoji1" />
         </Box>
         <Box striped style={{ gridRow: 1, gridColumn: "2 / 4" }} /> {/* #2 */}
         <Box style={{ gridRow: 1, gridColumn: 4 }}>
-          <img src={BoiniSymbol} alt="icon" />
+          <img src={Emoji2} style={{ width: "12vw", height: "auto" }} alt="emoji2" />
         </Box>
 
         {/* 2행 */}
@@ -229,7 +235,7 @@ const MainPage = () => {
           <img
             src={TitleSVG}
             alt="발표가 달라진다"
-            style={{ width: "70%", height: "auto", marginBottom: "3vh", }}
+            style={{ width: "95%", height: "auto"}}
           />
 
           <UploadBox
@@ -252,12 +258,15 @@ const MainPage = () => {
                 ? selectedFile.name
                 : isDragging
                   ? "여기에 파일을 놓으세요 📂"
-                  : "여기에 PDF 파일을 업로드 해주세요."}
+                  : "여기에 PDF 파일을 업로드하고 시작하세요!"}
             </span>
-            <span className="arrow" onClick={(e) => {
-              e.stopPropagation();
-              handleStartPresentation();
-            }}>
+            <span
+              className="arrow"
+              onClick={(e) => {
+                e.stopPropagation();
+                handleStartPresentation();
+              }}
+            >
               ➜
             </span>
           </UploadBox>
@@ -274,13 +283,14 @@ const MainPage = () => {
 
         {/* 3행 */}
         <Box style={{ gridRow: 3, gridColumn: 1 }}>
-          <img src={BoiniSymbol} alt="icon" />
+          <img src={Emoji3} style={{ width: "12vw", height: "auto" }} alt="emoji3" />
         </Box>
         <Box striped style={{ gridRow: 3, gridColumn: 2 }} /> {/* #8 */}
         <Box style={{ gridRow: 3, gridColumn: 3 }}>
-          <img src={BoiniSymbol} alt="icon" />
+          <img src={Emoji4} style={{ width: "12vw", height: "auto" }} alt="emoji4" />
         </Box>
       </CenterGrid>
+
 
       {/* 우측 */}
       <Side>
