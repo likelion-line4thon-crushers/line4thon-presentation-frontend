@@ -2,7 +2,7 @@ import styled from "styled-components";
 
 export const EmojiContainer = styled.div`
   width: 36.67vw;
-  height: 7.41vh;
+  height: 6.41vh;
   background: #fafafa;
   border: 1px solid #eaeaea;
 
@@ -13,7 +13,7 @@ export const EmojiContainer = styled.div`
   padding: 1.11vh 1.88vw;
   margin: 0 auto;
   position: absolute;
-  top: 80%;
+  top: 87%;
   left: 50%;
   transform: translate(-50%, -50%);
   z-index: 10;
