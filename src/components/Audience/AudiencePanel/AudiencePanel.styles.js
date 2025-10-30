@@ -3,8 +3,8 @@ import styled from "styled-components";
 export const PanelWrapper = styled.div`
   background: #ffffff;
   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
-  width: 303px;
-  height: 1060px;
+  width: 15.78vw; /* 303px @ 1920 */
+  height: 98.15vh; /* 1060px @ 1080 */
   display: flex;
   flex-direction: column;
   border: 1px solid #eaeaea;
@@ -12,9 +12,9 @@ export const PanelWrapper = styled.div`
 
 export const HeaderBox = styled.div`
   display: flex;
-  height: 38px;
-  width: 327px;
-  padding: 8px 0px 8px 24px;
+  height: 3.52vh; /* 38px */
+  width: 17.03vw; /* 327px */
+  padding: 0.74vh 0 0.74vh 1.25vw; /* 8px 0 8px 24px */
   align-items: center;
   border: 1px solid #eaeaea;
   background: #f9f9f9;
@@ -24,7 +24,7 @@ export const Section = styled.div`
   display: flex;
   flex-direction: column;
   height: 100%;
-  padding: 20px 24px 24px 14px;
+  padding: 1.85vh 1.25vw 2.22vh 0.73vw; /* 20px 24px 24px 14px */
 `;
 
 export const Title = styled.h2`
@@ -41,16 +41,16 @@ export const Title = styled.h2`
 export const QuestionList = styled.div`
   flex: 1;
   overflow-y: auto;
-  padding-right: 8px;
+  padding-right: 0.42vw; /* 8px */
   border: 1px solid #eaeaea;
   background: #fafafa;
-  border-radius: 20px;
+  border-radius: 1.04vw; /* 20px */
   display: flex;
   flex-direction: column;
   align-items: center;
 
   &::-webkit-scrollbar {
-    width: 6px;
+    width: 0.31vw; /* 6px */
   }
 
   &::-webkit-scrollbar-track {
@@ -60,7 +60,7 @@ export const QuestionList = styled.div`
 
   &::-webkit-scrollbar-thumb {
     background: #c1c1c1;
-    border-radius: 3px;
+    border-radius: 0.16vw; /* 3px */
   }
 
   &::-webkit-scrollbar-thumb:hover {
@@ -69,21 +69,21 @@ export const QuestionList = styled.div`
 `;
 
 export const QuestionItem = styled.div`
-  margin-bottom: 16px;
-  padding: 12px;
+  margin-bottom: 1.48vh; /* 16px */
+  padding: 1.11vh 0.63vw; /* approx 12px */
   background: #fff;
-  border-radius: 6px;
+  border-radius: 0.31vw; /* 6px */
 `;
 
 export const SlideLabel = styled.span`
   display: flex;
-  padding: 2px 4px;
+  padding: 0.19vh 0.21vw; /* 2px 4px */
   justify-content: center;
   align-items: center;
   gap: 10px;
-  border-radius: 4px;
+  border-radius: 0.21vw; /* 4px */
   background: #5c5c5c;
-  width: 59px;
+  width: 3.07vw; /* 59px */
   color: #fff;
   font-family: Pretendard;
   font-size: 10px;
@@ -91,7 +91,7 @@ export const SlideLabel = styled.span`
   font-weight: 600;
   line-height: 16px;
   letter-spacing: -0.25px;
-  margin-right: 8px;
+  margin-right: 0.42vw; /* 8px */
 `;
 
 export const Timestamp = styled.span`
@@ -101,19 +101,19 @@ export const Timestamp = styled.span`
   font-weight: 400;
   line-height: 18px;
   letter-spacing: -0.3px;
-  margin-left: 8px;
+  margin-left: 0.42vw; /* 8px */
 `;
 
 export const HeaderRow = styled.div`
   display: flex;
   align-items: center;
-  margin-bottom: 8px;
+  margin-bottom: 0.74vh; /* 8px */
 `;
 
 export const QuestionContent = styled.div`
   color: #666666;
   font-size: 12px;
-  margin: 8px 0 4px 0;
+  margin: 0.74vh 0 0.37vh 0; /* 8px 0 4px 0 */
 `;
 
 export const QuestionText = styled.div`
@@ -124,35 +124,35 @@ export const QuestionText = styled.div`
   font-weight: 400;
   line-height: 18px;
   letter-spacing: -0.3px;
-  margin-top: 4px;
+  margin-top: 0.37vh; /* 4px */
 `;
 
 export const Scrollbar = styled.div`
-  width: 6px;
+  width: 0.31vw; /* 6px */
   background: #e0e0e0;
-  border-radius: 3px;
+  border-radius: 0.16vw; /* 3px */
   position: absolute;
-  right: 8px;
-  top: 60px;
-  bottom: 20px;
+  right: 0.42vw; /* 8px */
+  top: 5.56vh; /* 60px */
+  bottom: 1.85vh; /* 20px */
 `;
 
 export const QuestionInputContainer = styled.div`
   display: flex;
-  width: 233px;
-  height: 48px;
-  padding: 14px 16px;
+  width: 12.14vw; /* 233px */
+  height: 4.44vh; /* 48px */
+  padding: 1.3vh 0.83vw; /* 14px 16px */
   justify-content: ${(props) =>
     props.$isInputting ? "center" : "space-between"};
   align-items: center;
   background: #ffffff;
   border: 1px solid #eaeaea;
-  border-radius: 8px;
+  border-radius: 0.42vw; /* 8px */
   margin-top: auto;
   transition: all 0.3s ease;
   flex-shrink: 0;
   box-sizing: border-box;
-  margin-bottom: 16px;
+  margin-bottom: 1.48vh; /* 16px */
 `;
 
 export const QuestionInput = styled.textarea`
@@ -163,8 +163,8 @@ export const QuestionInput = styled.textarea`
   font-size: 14px;
   color: #333;
   resize: none;
-  min-height: ${(props) => (props.$isInputting ? "20px" : "20px")};
-  max-height: 40px;
+  min-height: ${(props) => (props.$isInputting ? "1.85vh" : "1.85vh")};
+  max-height: 3.7vh; /* 40px */
   line-height: 1.4;
 
   &::placeholder {
@@ -181,16 +181,16 @@ export const QuestionInput = styled.textarea`
 `;
 
 export const SubmitButton = styled.button`
-  width: 32px;
-  height: 32px;
+  width: 2.96vh; /* 32px */
+  height: 2.96vh; /* 32px */
   background: #5c5c5c;
   border: none;
-  border-radius: 4px;
+  border-radius: 0.37vh; /* 4px */
   display: flex;
   align-items: center;
   justify-content: center;
   cursor: pointer;
-  margin-left: 8px;
+  margin-left: 0.42vw; /* 8px */
   transition: background-color 0.2s ease;
 
   &:hover {
