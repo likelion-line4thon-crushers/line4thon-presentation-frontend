@@ -1,23 +1,27 @@
-html,
-body,
-#root {
-  width: 100%;
-  height: 100%;
+/* global.css */
+html, body {
   margin: 0;
-  overflow: hidden;
-  background: #f7f8fa;
-  font-family: "Pretendard", -apple-system, BlinkMacSystemFont, "Segoe UI",
-    "Roboto", "Oxygen", "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans",
-    "Helvetica Neue", sans-serif;
-  color: #333;
+  height: 100%;
+  overflow: hidden; /* 스크롤 완전 차단 */
 }
 
+#root {
+  display: grid;
+  grid-template-rows: 3.7vh 1fr; /* 헤더 + 나머지 */
+  height: 100vh;
+  overflow: hidden;
+}
 
-.stage {
-  position: fixed;
-  top: 0;
-  left: 0;
+.HeaderBar {
+  grid-row: 1;
+  width: 100%;
+  height: 3.7vh;
   background: #fff;
-  transition: transform 0.15s ease;
-  transform-origin: top left;
+  z-index: 100;
+}
+
+.page {
+  grid-row: 2;
+  overflow: hidden;
+  height: 100%; /* ✅ 남은 영역 자동 채움 */
 }

@@ -1,26 +1,43 @@
 import React from "react";
-import styled from "styled-components";
+import styled, { css } from "styled-components";
+import { useLocation } from "react-router-dom";
+import BoiniLogo from "../../assets/images/Boini_logo.svg";
 
 const HeaderWrapper = styled.header`
   width: 100vw;
-  height: 40px;
+  height: 3.7vh; /* 40px -> 3.7vh */
   display: flex;
   align-items: center;
   background: #fff;
-  border-bottom: 1px solid #e6e6e6;
+  border-bottom: 0.05vw solid #e6e6e6;
   position: fixed;
   top: 0;
   left: 0;
   z-index: 1000;
+  padding: 0 0.8vw;
 `;
 
 const Logo = styled.div`
   display: flex;
   align-items: center;
-  font-weight: bold;
-  font-size: 18px;
-  margin: 0 16px 0 12px;
-  letter-spacing: -0.2px;
+
+  img {
+    width: auto;
+    height: 2.2vh; /* 24px -> 2.2vh */
+  }
+
+  ${({ isMain }) =>
+    isMain
+      ? css`
+          /* ✅ 메인 페이지 중앙 정렬 */
+          position: absolute;
+          left: 50%;
+          transform: translateX(-50%);
+          margin: 0;
+        `
+      : css`
+          margin: 0 0.83vw 0 0.63vw; /* (16px,12px) -> vw 단위 */
+        `}
 `;
 
 const Body = styled.div`
@@ -30,19 +47,20 @@ const Body = styled.div`
   justify-content: center;
 `;
 
-// children props로 내부 아이템들을 자유롭게 삽입
 function HeaderBar({ children }) {
-    return (
-        <HeaderWrapper>
-            <Logo>
-                {/* 토글 아이콘, Boini 로고 등 본문에 맞게 넣을 예정*/}
-                <span style={{ marginRight: 8 }}>●</span>
-                Boini
-            </Logo>
-            <Body>
-                {children}
-            </Body>
-        </HeaderWrapper>
-    );
+  const location = useLocation();
+  const isMain = location.pathname === "/"; // ✅ 메인페이지 감지
+
+  return (
+    <HeaderWrapper>
+      <Logo isMain={isMain}>
+        <img src={BoiniLogo} alt="Boini logo" />
+      </Logo>
+
+      {/* ✅ 메인페이지에는 children 없음, 그 외 페이지는 자유롭게 콘텐츠 배치 */}
+      {!isMain && <Body>{children}</Body>}
+    </HeaderWrapper>
+  );
 }
+
 export default HeaderBar;
