@@ -6,18 +6,18 @@ import {
   CenterContainer,
   RightPanelContainer,
 } from "./AudienceViewPage.styles";
-import PeopleSVG from "../../assets/images/people.svg";
+import RabbitSVG from "../../assets/images/rabbit.jpg";
 import SlideViewer from "../../components/Audience/SlideViewer_audience/SlideViewer_audience";
 import EmojiPanel from "../../components/Audience/EmojiPanel";
 
 const AudienceViewPage = () => {
   // 임시 슬라이드 데이터
   const [slides] = useState([
-    PeopleSVG,
-    PeopleSVG,
-    PeopleSVG,
-    PeopleSVG,
-    PeopleSVG,
+    RabbitSVG,
+    RabbitSVG,
+    RabbitSVG,
+    RabbitSVG,
+    RabbitSVG,
   ]);
 
   const [currentSlide, setCurrentSlide] = useState(0);
@@ -37,8 +37,6 @@ const AudienceViewPage = () => {
       return next;
     });
   };
-
-  // 전역 커서 변경은 사용하지 않음: 슬라이드 내부에서만 커서 변경
 
   return (
     <PageContainer>
