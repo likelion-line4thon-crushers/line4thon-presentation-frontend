@@ -7,7 +7,7 @@ import {
   RightPanelContainer,
 } from "./AudienceViewPage.styles";
 import PeopleSVG from "../../assets/images/people.svg";
-import SlideViewer from "../../components/SlideViewer";
+import SlideViewer from "../../components/Audience/SlideViewer_audience/SlideViewer_audience";
 import EmojiPanel from "../../components/Audience/EmojiPanel";
 
 const AudienceViewPage = () => {

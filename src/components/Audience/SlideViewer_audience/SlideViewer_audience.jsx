@@ -1,7 +1,10 @@
 import React, { useRef } from "react";
-import { Main, SlideBox, FocusBar, FocusLeft } from "./SlideViewer.styles";
-
-import FocusIcon from "../../assets/images/focus.svg";
+import {
+  Main,
+  SlideBox,
+  FocusBar,
+  FocusLeft,
+} from "./SlideViewer_audience.styles";
 
 const SlideViewer = ({
   slides,
@@ -24,8 +27,7 @@ const SlideViewer = ({
     <Main>
       <FocusBar>
         <FocusLeft>
-          <img src={FocusIcon} alt="집중 유도" width={20} height={20} />
-          <span>집중 유도</span>
+          <span>집중유도맒고 다른걸로 바꿔야함</span>
         </FocusLeft>
       </FocusBar>
 

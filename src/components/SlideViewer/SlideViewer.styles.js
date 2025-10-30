@@ -42,18 +42,11 @@ export const FocusLeft = styled.div`
 export const SlideBox = styled.div`
   background-color: white;
   border-radius: 0.6vw;
-  padding: 0;
+  padding: 2.8vh 1.5vw;
   box-shadow: 0 0.4vh 1vh rgba(0, 0, 0, 0.1);
-  width: 65.7vw;
-  max-width: 65.7vw;
-  aspect-ratio: 210 / 297;
-  height: auto;
-  max-height: 70vh;
-  overflow: hidden;
-  position: relative;
-  display: flex;
-  align-items: center;
-  justify-content: center;
+  max-width: 67.7vw; /* 1300px */
+  width: 100%;
+  text-align: center;
 `;
 
 export const NavButton = styled.button`
