@@ -1,16 +1,16 @@
 import styled from "styled-components";
 
 export const EmojiContainer = styled.div`
-  width: 36.67vw; /* 704px @ 1920 */
-  height: 7.41vh; /* 80px @ 1080 */
+  width: 36.67vw;
+  height: 7.41vh;
   background: #fafafa;
   border: 1px solid #eaeaea;
 
-  border-radius: 5.21vw; /* 100px */
+  border-radius: 5.21vw;
   display: flex;
   align-items: center;
   justify-content: center;
-  padding: 1.11vh 1.88vw; /* 12px 36px */
+  padding: 1.11vh 1.88vw;
   margin: 0 auto;
   position: absolute;
   top: 80%;
@@ -25,15 +25,15 @@ export const EmojiWrapper = styled.div`
   justify-content: space-between;
   width: 100%;
   height: 100%;
-  gap: 0.42vw; /* 8px */
+  gap: 0.42vw;
 `;
 
 export const EmojiItem = styled.div`
   display: flex;
   align-items: center;
   justify-content: center;
-  width: 2.96vh; /* 32px */
-  height: 2.96vh; /* 32px */
+  width: 2.96vh;
+  height: 2.96vh;
   cursor: pointer;
   border-radius: 50%;
   transition: background-color 0.2s ease;
@@ -44,8 +44,8 @@ export const EmojiItem = styled.div`
 `;
 
 export const EmojiIcon = styled.img`
-  width: 1.85vh; /* 20px */
-  height: 1.85vh; /* 20px */
+  width: 1.85vh;
+  height: 1.85vh;
   object-fit: contain;
   filter: grayscale(100%);
 `;

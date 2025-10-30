@@ -10,8 +10,8 @@ export const CenterContainer = styled.div`
   display: flex;
   flex-direction: column;
   flex: 1;
-  gap: 1.48vh; /* 16px */
-  padding: 0.93vh 0.52vw; /* 10px */
+  gap: 1.48vh;
+  padding: 0.93vh 0.52vw;
   position: relative;
   background: #fff;
 `;
