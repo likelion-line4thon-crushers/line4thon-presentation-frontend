@@ -25,7 +25,7 @@ const EmojiPanel = () => {
       <EmojiWrapper>
         {emojis.map((emoji) => (
           <EmojiItem key={emoji.id}>
-            <EmojiIcon src={emoji.icon} alt={`이모지 ${emoji.id}`} />
+            <EmojiIcon src={emoji.icon} alt={`이모티콘 ${emoji.id}`} />
           </EmojiItem>
         ))}
       </EmojiWrapper>
