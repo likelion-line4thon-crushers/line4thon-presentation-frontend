@@ -24,7 +24,7 @@ export const Section = styled.div`
   display: flex;
   flex-direction: column;
   height: 100%;
-  padding: 1.85vh 1.25vw 2.22vh 0.73vw; /* 20px 24px 24px 14px */
+  padding: 1.85vh 1.25vw 2.22vh 0.73vw;
 `;
 
 export const Title = styled.h2`
@@ -41,7 +41,7 @@ export const Title = styled.h2`
 export const QuestionList = styled.div`
   flex: 1;
   overflow-y: auto;
-  padding-right: 0.42vw; /* 8px */
+  padding-right: 0.42vw;
   border: 1px solid #eaeaea;
   background: #fafafa;
   border-radius: 1.04vw;
@@ -135,6 +135,27 @@ export const Scrollbar = styled.div`
   right: 0.42vw;
   top: 5.56vh;
   bottom: 1.85vh;
+`;
+
+export const LockBanner = styled.div`
+  border-radius: 24.014px;
+  border: 2px solid #fff;
+  background: rgba(247, 247, 251, 0.9);
+  box-shadow: 0 8px 12px 0 rgba(0, 0, 0, 0.12);
+  backdrop-filter: blur(6px);
+  display: inline-flex;
+  padding: 5px 18px 5px 18px;
+  justify-content: center;
+  align-items: center;
+  gap: 10px;
+  align-self: center;
+  margin-top: auto;
+  margin-bottom: 1.48vh;
+
+  color: #5c5c5c;
+  font-family: Pretendard;
+  font-size: 13px;
+  font-weight: 600;
 `;
 
 export const QuestionInputContainer = styled.div`

@@ -92,7 +92,7 @@ const EmojiPanel = ({ selectedId: controlledSelectedId, onSelect }) => {
               onClick={() => {
                 if (onSelect) onSelect(emoji);
                 if (!isControlled) setUncontrolledSelectedId(emoji.id);
-              }}
+              }} //마우스 포인터 변경
             />
           </EmojiItem>
         ))}
