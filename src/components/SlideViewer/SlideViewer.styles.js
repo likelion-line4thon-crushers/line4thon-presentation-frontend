@@ -47,6 +47,7 @@ export const SlideBox = styled.div`
   max-width: 67.7vw; /* 1300px */
   width: 100%;
   text-align: center;
+  position: relative;
 `;
 
 export const NavButton = styled.button`

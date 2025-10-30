@@ -31,8 +31,12 @@ import sadSelected from "../../../assets/icons/Emoji_selected/Sad_selected.png";
 import okSelected from "../../../assets/icons/Emoji_selected/O_selected.png";
 import xSelected from "../../../assets/icons/Emoji_selected/X_selected.png";
 
-const EmojiPanel = () => {
-  const [selectedId, setSelectedId] = useState(null);
+const EmojiPanel = ({ selectedId: controlledSelectedId, onSelect }) => {
+  const isControlled = controlledSelectedId !== undefined;
+  const [uncontrolledSelectedId, setUncontrolledSelectedId] = useState(null);
+  const selectedId = isControlled
+    ? controlledSelectedId
+    : uncontrolledSelectedId;
 
   const emojis = [
     {
@@ -85,7 +89,10 @@ const EmojiPanel = () => {
                 e.target.src =
                   selectedId === emoji.id ? emoji.selectedIcon : emoji.icon;
               }}
-              onClick={() => setSelectedId(emoji.id)}
+              onClick={() => {
+                if (onSelect) onSelect(emoji);
+                if (!isControlled) setUncontrolledSelectedId(emoji.id);
+              }}
             />
           </EmojiItem>
         ))}
