@@ -1,10 +1,16 @@
-import React, { useRef } from "react";
+import React, { useRef, useState } from "react";
 import {
   Main,
   SlideBox,
   FocusBar,
-  FocusLeft,
+  ToggleText,
+  ReactionButton,
+  TooltipHoverArea,
+  Tooltip,
 } from "./SlideViewer_audience.styles";
+import { SingleToggleInput } from "../../SettingsPanel/SettingsPanel.styles";
+import openeyes from "../../../assets/images/openeyes.png";
+import closeeyes from "../../../assets/images/closeeyes.png";
 
 const SlideViewer = ({
   slides,
@@ -14,6 +20,7 @@ const SlideViewer = ({
   onPlace,
 }) => {
   const boxRef = useRef(null);
+  const [isEyesOpen, setIsEyesOpen] = useState(true);
 
   const handleClick = (e) => {
     if (!onPlace || !boxRef.current) return;
@@ -26,9 +33,19 @@ const SlideViewer = ({
   return (
     <Main>
       <FocusBar>
-        <FocusLeft>
-          <span>집중유도맒고 다른걸로 바꿔야함</span>
-        </FocusLeft>
+        <div style={{ display: "inline-flex", alignItems: "center", gap: 8 }}>
+          <SingleToggleInput defaultChecked />
+          <ToggleText>발표자와 함께 보기</ToggleText>
+        </div>
+        <TooltipHoverArea>
+          <Tooltip>리액션 스티커 보이기</Tooltip>
+          <ReactionButton onClick={() => setIsEyesOpen((v) => !v)}>
+            <img
+              src={isEyesOpen ? openeyes : closeeyes}
+              alt={isEyesOpen ? "openeyes" : "closeeyes"}
+            />
+          </ReactionButton>
+        </TooltipHoverArea>
       </FocusBar>
 
       <SlideBox
