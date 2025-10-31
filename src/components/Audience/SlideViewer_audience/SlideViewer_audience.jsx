@@ -18,9 +18,12 @@ const SlideViewer = ({
   cursorImage,
   stamps = [],
   onPlace,
+  followPresenter = true,
+  onToggleFollow,
+  showStamps = true,
+  onToggleShowStamps,
 }) => {
   const boxRef = useRef(null);
-  const [isEyesOpen, setIsEyesOpen] = useState(true);
 
   const handleClick = (e) => {
     if (!onPlace || !boxRef.current) return;
@@ -30,19 +33,34 @@ const SlideViewer = ({
     onPlace({ xPct, yPct });
   };
 
+  const handleToggleFollowChange = (event) => {
+    if (typeof onToggleFollow === "function") {
+      onToggleFollow(event.target.checked);
+    }
+  };
+
+  const handleToggleEyesClick = () => {
+    if (typeof onToggleShowStamps === "function") {
+      onToggleShowStamps(!showStamps);
+    }
+  };
+
   return (
     <Main>
       <FocusBar>
         <div style={{ display: "inline-flex", alignItems: "center", gap: 8 }}>
-          <SingleToggleInput defaultChecked />
+          <SingleToggleInput
+            checked={followPresenter}
+            onChange={handleToggleFollowChange}
+          />
           <ToggleText>발표자와 함께 보기</ToggleText>
         </div>
         <TooltipHoverArea>
           <Tooltip>리액션 스티커 보이기</Tooltip>
-          <ReactionButton onClick={() => setIsEyesOpen((v) => !v)}>
+          <ReactionButton onClick={handleToggleEyesClick}>
             <img
-              src={isEyesOpen ? openeyes : closeeyes}
-              alt={isEyesOpen ? "openeyes" : "closeeyes"}
+              src={showStamps ? openeyes : closeeyes}
+              alt={showStamps ? "openeyes" : "closeeyes"}
             />
           </ReactionButton>
         </TooltipHoverArea>
@@ -67,22 +85,23 @@ const SlideViewer = ({
             display: "block",
           }}
         />
-        {stamps.map((stamp, idx) => (
-          <img
-            key={`${stamp.xPct}-${stamp.yPct}-${idx}`}
-            src={stamp.src}
-            alt="stamp"
-            style={{
-              position: "absolute",
-              top: `${stamp.yPct}%`,
-              left: `${stamp.xPct}%`,
-              transform: "translate(-50%, -50%)",
-              width: 40,
-              height: 40,
-              pointerEvents: "none",
-            }}
-          />
-        ))}
+        {showStamps &&
+          stamps.map((stamp, idx) => (
+            <img
+              key={`${stamp.xPct}-${stamp.yPct}-${idx}`}
+              src={stamp.src}
+              alt="stamp"
+              style={{
+                position: "absolute",
+                top: `${stamp.yPct}%`,
+                left: `${stamp.xPct}%`,
+                transform: "translate(-50%, -50%)",
+                width: 40,
+                height: 40,
+                pointerEvents: "none",
+              }}
+            />
+          ))}
       </SlideBox>
     </Main>
   );

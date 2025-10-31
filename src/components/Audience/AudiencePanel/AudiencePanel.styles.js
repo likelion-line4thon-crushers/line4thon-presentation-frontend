@@ -175,7 +175,7 @@ export const QuestionInputContainer = styled.div`
   display: flex;
   width: 12.14vw;
   height: 4.44vh;
-  padding: 10px;
+  padding: 10px 1px;
   justify-content: ${(props) =>
     props.$isInputting ? "center" : "space-between"};
   align-items: center;
@@ -201,7 +201,7 @@ export const QuestionInput = styled.textarea`
   min-height: 1.85vh;
   max-height: 4.7vh;
   line-height: 1.4;
-  padding: 0;
+  padding: 10px;
   height: 100%;
   text-align: left;
 
