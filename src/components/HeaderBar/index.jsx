@@ -3,8 +3,7 @@ import styled, { css } from "styled-components";
 import { useLocation } from "react-router-dom";
 import BoiniLogo from "../../assets/images/Boini_logo.svg";
 import LiveIcon from "../../assets/images/live.png";
-import ShareIcon from "../../assets/images/share.png";
-import ExitIcon from "../../assets/images/getout.png";
+import { ShareButton, ExitButton } from "../common/HeaderButtons";
 
 const HeaderWrapper = styled.header`
   width: 100vw;
@@ -77,44 +76,6 @@ const RightActions = styled.div`
   margin-right: 20px;
 `;
 
-const PillButton = styled.button`
-  display: inline-flex;
-  align-items: center;
-  gap: 0.42vw;
-  padding: 10px 14px;
-  border-radius: 10px;
-  border: 1px solid #eaeaea;
-  background: #fff;
-  color: #000000;
-  font-family: Pretendard;
-  font-size: 13px;
-  font-weight: 500;
-  cursor: pointer;
-  transition: background 0.2s ease, color 0.2s ease;
-  width: 100px;
-  height: 30px;
-
-  img {
-    width: 1vw;
-    height: 1vw;
-    object-fit: contain;
-  }
-
-  &:hover {
-    background: #f4f4f4;
-  }
-`;
-
-const ExitButton = styled(PillButton)`
-  background: #303030;
-  border: 1px solid #cacaca;
-  color: #fff;
-  justify-content: center;
-  &:hover {
-    background: #303030;
-  }
-`;
-
 function HeaderBar({ children }) {
   const location = useLocation();
   const isMain = location.pathname === "/"; // ✅ 메인페이지 감지
@@ -140,14 +101,8 @@ function HeaderBar({ children }) {
 
       {isAudienceView && (
         <RightActions>
-          <PillButton>
-            <img src={ShareIcon} alt="공유" />
-            공유하기
-          </PillButton>
-          <ExitButton>
-            <img src={ExitIcon} alt="나가기" />
-            나가기
-          </ExitButton>
+          <ShareButton />
+          <ExitButton />
         </RightActions>
       )}
     </HeaderWrapper>
