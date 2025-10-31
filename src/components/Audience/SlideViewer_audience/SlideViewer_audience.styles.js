@@ -1,5 +1,5 @@
 import styled from "styled-components";
-import { SingleToggleInput as BaseToggle } from "../../SettingsPanel/SettingsPanel.styles";
+import { ToggleInput } from "../../SettingsPanel/SettingsPanel.styles";
 
 /* 전체 컨테이너 */
 export const Main = styled.div`
@@ -18,6 +18,10 @@ export const FocusBar = styled.div`
   align-self: flex-start;
   justify-content: flex-start;
   gap: 900px;
+`;
+
+export const SingleToggleInput = styled(ToggleInput)`
+  margin: 0;
 `;
 
 /* 슬라이드 본문 */

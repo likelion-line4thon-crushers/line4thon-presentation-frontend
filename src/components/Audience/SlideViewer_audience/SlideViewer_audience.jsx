@@ -7,8 +7,8 @@ import {
   ReactionButton,
   TooltipHoverArea,
   Tooltip,
+  SingleToggleInput,
 } from "./SlideViewer_audience.styles";
-import { SingleToggleInput } from "../../SettingsPanel/SettingsPanel.styles";
 import openeyes from "../../../assets/images/openeyes.png";
 import closeeyes from "../../../assets/images/closeeyes.png";
 

@@ -2,6 +2,8 @@ import React from "react";
 import styled, { css } from "styled-components";
 import { useLocation } from "react-router-dom";
 import BoiniLogo from "../../assets/images/Boini_logo.svg";
+import LiveIcon from "../../assets/images/live.png";
+import { ShareButton, ExitButton } from "../common/HeaderButtons";
 
 const HeaderWrapper = styled.header`
   width: 100vw;
@@ -45,11 +47,39 @@ const Body = styled.div`
   display: flex;
   align-items: center;
   justify-content: center;
+  gap: 0.6vw;
+`;
+
+const LiveBadge = styled.div`
+  display: inline-flex;
+  align-items: center;
+  gap: 0.42vw;
+  padding: 0.4vh 1vw;
+  border-radius: 999px;
+  background: #fff;
+  color: #5c5c5c;
+  font-family: Pretendard;
+  font-size: 0.83vw;
+  font-weight: 500;
+
+  img {
+    width: 1.2vw;
+    height: 1.2vw;
+    object-fit: contain;
+  }
+`;
+
+const RightActions = styled.div`
+  display: inline-flex;
+  align-items: center;
+  gap: 0.63vw;
+  margin-right: 20px;
 `;
 
 function HeaderBar({ children }) {
   const location = useLocation();
   const isMain = location.pathname === "/"; // ✅ 메인페이지 감지
+  const isAudienceView = location.pathname === "/audience";
 
   return (
     <HeaderWrapper>
@@ -58,7 +88,23 @@ function HeaderBar({ children }) {
       </Logo>
 
       {/* ✅ 메인페이지에는 children 없음, 그 외 페이지는 자유롭게 콘텐츠 배치 */}
-      {!isMain && <Body>{children}</Body>}
+      {!isMain && (
+        <Body>
+          {isAudienceView && (
+            <LiveBadge>
+              <img src={LiveIcon} alt="live" />
+              라이브 진행 중
+            </LiveBadge>
+          )}
+        </Body>
+      )}
+
+      {isAudienceView && (
+        <RightActions>
+          <ShareButton />
+          <ExitButton />
+        </RightActions>
+      )}
     </HeaderWrapper>
   );
 }
