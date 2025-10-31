@@ -24,6 +24,7 @@ const AudienceViewPage = () => {
   const [followPresenter, setFollowPresenter] = useState(true);
   const [selectedEmoji, setSelectedEmoji] = useState(null);
   const [stampsBySlide, setStampsBySlide] = useState({});
+  const [showStamps, setShowStamps] = useState(true);
 
   const handleSelectEmoji = (emoji) => setSelectedEmoji(emoji);
 
@@ -41,6 +42,10 @@ const AudienceViewPage = () => {
 
   const handleToggleFollowPresenter = (checked) => {
     setFollowPresenter(checked);
+  };
+
+  const handleToggleShowStamps = (nextValue) => {
+    setShowStamps(nextValue);
   };
 
   const handleAudienceSelectSlide = (slideIndex) => {
@@ -65,6 +70,8 @@ const AudienceViewPage = () => {
           onPlace={handlePlaceStamp}
           followPresenter={followPresenter}
           onToggleFollow={handleToggleFollowPresenter}
+          showStamps={showStamps}
+          onToggleShowStamps={handleToggleShowStamps}
         />
         <EmojiPanel
           selectedId={selectedEmoji?.id}
