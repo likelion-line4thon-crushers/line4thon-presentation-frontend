@@ -197,7 +197,7 @@ export const QuestionInput = styled.textarea`
   font-size: 14px;
   color: #333;
   resize: none;
-  min-height: ${(props) => (props.$isInputting ? "1.85vh" : "1.85vh")};
+  min-height: 1.85vh;
   max-height: 3.7vh;
   line-height: 1.4;
 
