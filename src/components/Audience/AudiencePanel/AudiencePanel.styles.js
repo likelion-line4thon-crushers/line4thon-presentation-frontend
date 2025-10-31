@@ -42,6 +42,7 @@ export const QuestionList = styled.div`
   flex: 1;
   overflow-y: auto;
   padding-right: 0.42vw;
+  padding: 10px;
   border: 1px solid #eaeaea;
   background: #fafafa;
   border-radius: 1.04vw;
@@ -71,19 +72,24 @@ export const QuestionList = styled.div`
 export const QuestionItem = styled.div`
   margin-bottom: 1.48vh;
   padding: 1.11vh 0.63vw;
-  background: #fff;
+  background: ${(props) => (props.$active ? "#f1f1f1" : "#fff")};
   border-radius: 0.31vw;
+  border: 1px solid ${(props) => (props.$active ? "#303030" : "transparent")};
+  transition: background 0.2s ease, border-color 0.2s ease;
+  width: 100%;
+  box-sizing: border-box;
 `;
 
-export const SlideLabel = styled.span`
-  display: flex;
-  padding: 0.19vh 0.21vw;
+export const SlideLabel = styled.button`
+  display: inline-flex;
+  padding: 0.19vh 0.42vw;
   justify-content: center;
   align-items: center;
   gap: 10px;
   border-radius: 0.21vw;
   background: #5c5c5c;
-  width: 3.07vw;
+  min-width: 3.07vw;
+  border: none;
   color: #fff;
   font-family: Pretendard;
   font-size: 10px;
@@ -92,6 +98,13 @@ export const SlideLabel = styled.span`
   line-height: 16px;
   letter-spacing: -0.25px;
   margin-right: 0.42vw;
+  cursor: pointer;
+  transition: background 0.2s ease, transform 0.2s ease;
+
+  &:hover {
+    background: #4a4a4a;
+    transform: translateY(-1px);
+  }
 `;
 
 export const Timestamp = styled.span`

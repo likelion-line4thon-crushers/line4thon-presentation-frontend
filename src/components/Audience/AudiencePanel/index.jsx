@@ -9,7 +9,6 @@ import {
   HeaderRow,
   SlideLabel,
   Timestamp,
-  QuestionContent,
   QuestionText,
   Scrollbar,
   QuestionInputContainer,
@@ -20,10 +19,40 @@ import {
 import GoodSVG from "../../../assets/images/good.svg";
 import LockIcon from "../../../assets/images/lock.png";
 
-const AudiencePanel = () => {
+const defaultQuestions = [
+  {
+    id: 1,
+    slideIndex: 0,
+    timestamp: "00:00",
+    text: "동해물과 백두산이 마르고 닳도록 동해물과 백두산이 마르고 닳도록",
+  },
+  {
+    id: 2,
+    slideIndex: 1,
+    timestamp: "00:12",
+    text: "질문 예시입니다. 내용을 자유롭게 수정해 주세요.",
+  },
+  {
+    id: 3,
+    slideIndex: 2,
+    timestamp: "01:03",
+    text: "추가 질문 예시입니다. 이 문구는 더미 데이터입니다.",
+  },
+  {
+    id: 4,
+    slideIndex: 0,
+    timestamp: "01:25",
+    text: "동해물과 백두산이 마르고 닳도록 동해물과 백두산이 마르고 닳도록",
+  },
+];
+
+const AudiencePanel = ({ currentSlide, onSelectSlide, questions }) => {
   const [questionText, setQuestionText] = useState("");
   const [isInputting, setIsInputting] = useState(false);
   const [isLocked, setIsLocked] = useState(false); // 발표자가 잠금 시 true로 설정
+
+  const questionItems =
+    questions && questions.length > 0 ? questions : defaultQuestions;
 
   const handleInputChange = (e) => {
     setQuestionText(e.target.value);
@@ -45,6 +74,12 @@ const AudiencePanel = () => {
     }
   };
 
+  const handleSelectSlide = (slideIndex) => {
+    if (typeof onSelectSlide === "function") {
+      onSelectSlide(slideIndex);
+    }
+  };
+
   return (
     <PanelWrapper>
       <HeaderBox>
@@ -52,70 +87,22 @@ const AudiencePanel = () => {
       </HeaderBox>
       <Section>
         <QuestionList>
-          <QuestionItem>
-            <HeaderRow>
-              <SlideLabel>슬라이드 0</SlideLabel>
-              <Timestamp>00:00</Timestamp>
-            </HeaderRow>
+          {questionItems.map(({ id, slideIndex, timestamp, text }) => (
+            <QuestionItem key={id} $active={slideIndex === currentSlide}>
+              <HeaderRow>
+                <SlideLabel
+                  type="button"
+                  onClick={() => handleSelectSlide(slideIndex)}
+                  $active={slideIndex === currentSlide}
+                >
+                  슬라이드 {slideIndex + 1}
+                </SlideLabel>
+                <Timestamp>{timestamp}</Timestamp>
+              </HeaderRow>
 
-            <QuestionText>
-              동해물과 백두산이 마르고 닳도록 동해물과 백두산이 마르고 닳도록
-            </QuestionText>
-          </QuestionItem>
-
-          <QuestionItem>
-            <HeaderRow>
-              <SlideLabel>슬라이드 0</SlideLabel>
-              <Timestamp>00:00</Timestamp>
-            </HeaderRow>
-
-            <QuestionText>
-              동해물과 백두산이 마르고 닳도록 동해물과 백두산이 마르고 닳도록
-            </QuestionText>
-          </QuestionItem>
-
-          <QuestionItem>
-            <HeaderRow>
-              <SlideLabel>슬라이드 0</SlideLabel>
-              <Timestamp>00:00</Timestamp>
-            </HeaderRow>
-
-            <QuestionText>
-              동해물과 백두산이 마르고 닳도록 동해물과 백두산이 마르고 닳도록
-            </QuestionText>
-          </QuestionItem>
-
-          <QuestionItem>
-            <HeaderRow>
-              <SlideLabel>슬라이드 0</SlideLabel>
-              <Timestamp>00:00</Timestamp>
-            </HeaderRow>
-
-            <QuestionText>
-              동해물과 백두산이 마르고 닳도록 동해물과 백두산이 마르고 닳도록
-            </QuestionText>
-          </QuestionItem>
-
-          <QuestionItem>
-            <HeaderRow>
-              <SlideLabel>슬라이드 0</SlideLabel>
-              <Timestamp>00:00</Timestamp>
-            </HeaderRow>
-
-            <QuestionText>
-              동해물과 백두산이 마르고 닳도록 동해물과 백두산이 마르고 닳도록
-            </QuestionText>
-          </QuestionItem>
-
-          <QuestionItem>
-            <HeaderRow>
-              <SlideLabel>슬라이드 0</SlideLabel>
-              <Timestamp>00:00</Timestamp>
-            </HeaderRow>
-            <QuestionText>
-              동해물과 백두산이 마르고 닳도록 동해물과 백두산이 마르고 닳도록
-            </QuestionText>
-          </QuestionItem>
+              <QuestionText>{text}</QuestionText>
+            </QuestionItem>
+          ))}
 
           {isLocked ? (
             <LockBanner>

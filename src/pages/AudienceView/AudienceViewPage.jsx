@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import AudiencePanel from "../../components/Audience/AudiencePanel";
 import SidebarSlides from "../../components/SidebarSlides";
 import {
@@ -61,7 +61,10 @@ const AudienceViewPage = () => {
       </CenterContainer>
       {/* 오른쪽 AudiencePanel */}
       <RightPanelContainer>
-        <AudiencePanel />
+        <AudiencePanel
+          currentSlide={currentSlide}
+          onSelectSlide={setCurrentSlide}
+        />
       </RightPanelContainer>
     </PageContainer>
   );
