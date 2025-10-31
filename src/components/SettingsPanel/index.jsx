@@ -17,10 +17,10 @@ import AudienceSVG from "../../assets/images/people.svg";
 import LiveWaitingBox from "./LiveWaitingBox";
 
 const SettingsPanel = () => (
-    <PanelWrapper>
-        <QuickSettingsSection />
-        <LiveQuestionSection />
-    </PanelWrapper>
+  <PanelWrapper>
+    <QuickSettingsSection />
+    <LiveQuestionSection />
+  </PanelWrapper>
 );
 
 const QuickSettingsSection = () => (
@@ -49,26 +49,27 @@ const QuickSettingsSection = () => (
 );
 
 const AudienceCount = () => (
-    <AudienceCountWrapper>
-        <AudienceIcon src={AudienceSVG} alt="청중 아이콘" />
-        <span>청중 수</span>
-        <AudienceNum>00/50</AudienceNum>
-    </AudienceCountWrapper>
+  <AudienceCountWrapper>
+    <AudienceIcon src={AudienceSVG} alt="청중 아이콘" />
+    <span>청중 수</span>
+    <AudienceNum>00/50</AudienceNum>
+  </AudienceCountWrapper>
 );
 
 const QuickSettingToggle = ({ label, description }) => (
-    <ToggleBox>
-        <ToggleLabel>{label}</ToggleLabel>
-        <ToggleDescription>{description}</ToggleDescription>
-        <ToggleInput type="checkbox" />
-    </ToggleBox>
+  <ToggleBox>
+    <ToggleLabel>{label}</ToggleLabel>
+    <ToggleDescription>{description}</ToggleDescription>
+    <ToggleInput type="checkbox" />
+  </ToggleBox>
 );
 
 const LiveQuestionSection = () => (
-    <Section>
-        <Title>실시간 질문</Title>
-        <LiveWaitingBox />
-    </Section>
+  <Section>
+    <Title>실시간 질문</Title>
+    <LiveWaitingBox />
+  </Section>
 );
 
 export default SettingsPanel;
+export { QuickSettingToggle };
