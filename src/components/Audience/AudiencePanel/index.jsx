@@ -18,7 +18,7 @@ import {
 } from "./AudiencePanel.styles";
 import GoodSVG from "../../../assets/images/good.svg";
 import LockIcon from "../../../assets/images/lock.png";
-import Arrow from "../../../assets/images/uparrow.png";
+import Arrow from "../../../assets/images/upArrow.png";
 
 const defaultQuestions = [
   {
