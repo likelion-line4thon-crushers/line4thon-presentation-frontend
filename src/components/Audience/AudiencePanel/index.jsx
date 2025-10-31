@@ -18,6 +18,7 @@ import {
 } from "./AudiencePanel.styles";
 import GoodSVG from "../../../assets/images/good.svg";
 import LockIcon from "../../../assets/images/lock.png";
+import Arrow from "../../../assets/images/uparrow.png";
 
 const defaultQuestions = [
   {
@@ -120,7 +121,7 @@ const AudiencePanel = ({ currentSlide, onSelectSlide, questions }) => {
               />
               {isInputting && (
                 <SubmitButton onClick={handleSubmit}>
-                  <img src={GoodSVG} alt="제출" width={16} height={16} />
+                  <img src={Arrow} alt="제출" width={28} height={28} />
                 </SubmitButton>
               )}
             </QuestionInputContainer>

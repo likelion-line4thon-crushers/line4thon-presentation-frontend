@@ -175,10 +175,12 @@ export const QuestionInputContainer = styled.div`
   display: flex;
   width: 12.14vw;
   height: 4.44vh;
-  padding: 1.3vh 0.83vw;
+  padding: 10px;
   justify-content: ${(props) =>
     props.$isInputting ? "center" : "space-between"};
   align-items: center;
+  gap: 0.42vw;
+
   background: #ffffff;
   border: 1px solid #eaeaea;
   border-radius: 0.42vw;
@@ -186,7 +188,6 @@ export const QuestionInputContainer = styled.div`
   transition: all 0.3s ease;
   flex-shrink: 0;
   box-sizing: border-box;
-  margin-bottom: 1.48vh;
 `;
 
 export const QuestionInput = styled.textarea`
@@ -198,19 +199,31 @@ export const QuestionInput = styled.textarea`
   color: #333;
   resize: none;
   min-height: 1.85vh;
-  max-height: 3.7vh;
+  max-height: 4.7vh;
   line-height: 1.4;
+  padding: 0;
+  height: 100%;
+  text-align: left;
 
   &::placeholder {
     color: #999;
-    overflow: hidden;
-    text-overflow: ellipsis;
+
     font-family: Pretendard;
     font-size: 14px;
     font-style: normal;
     font-weight: 400;
     line-height: 20px;
     letter-spacing: -0.35px;
+    text-align: left;
+
+    text-indent: 6px;
+  }
+
+  &:placeholder-shown {
+    text-align: left;
+    line-height: 4.44vh;
+
+    margin-left: 5px;
   }
 `;
 
@@ -226,6 +239,7 @@ export const SubmitButton = styled.button`
   cursor: pointer;
   margin-left: 0.42vw;
   transition: background-color 0.2s ease;
+  align-self: center;
 
   &:hover {
     background: #4a4a4a;
