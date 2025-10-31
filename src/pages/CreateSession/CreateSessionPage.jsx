@@ -42,7 +42,7 @@ const PresentationPrepPage = () => {
         participantCount={participantCount}
         maxParticipants={maxParticipants}
       />
-      <SlideViewer slides={slides} currentSlide={currentSlide} setCurrentSlide={setCurrentSlide} />
+      <SlideViewer slides={slides} currentSlide={currentSlide} setCurrentSlide={setCurrentSlide} mode="prepare"/>
       <SettingsPanel />
     </Layout>
   );
