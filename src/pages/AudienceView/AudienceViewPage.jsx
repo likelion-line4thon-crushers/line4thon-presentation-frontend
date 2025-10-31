@@ -21,6 +21,7 @@ const AudienceViewPage = () => {
   ]);
 
   const [currentSlide, setCurrentSlide] = useState(0);
+  const [followPresenter, setFollowPresenter] = useState(true);
   const [selectedEmoji, setSelectedEmoji] = useState(null);
   const [stampsBySlide, setStampsBySlide] = useState({});
 
@@ -38,6 +39,15 @@ const AudienceViewPage = () => {
     });
   };
 
+  const handleToggleFollowPresenter = (checked) => {
+    setFollowPresenter(checked);
+  };
+
+  const handleAudienceSelectSlide = (slideIndex) => {
+    setFollowPresenter(false);
+    setCurrentSlide(slideIndex);
+  };
+
   return (
     <PageContainer>
       {/* 왼쪽 슬라이드 바 */}
@@ -53,6 +63,8 @@ const AudienceViewPage = () => {
           cursorImage={selectedEmoji?.selectedIcon}
           stamps={stampsBySlide[String(currentSlide)] || []}
           onPlace={handlePlaceStamp}
+          followPresenter={followPresenter}
+          onToggleFollow={handleToggleFollowPresenter}
         />
         <EmojiPanel
           selectedId={selectedEmoji?.id}
@@ -63,7 +75,7 @@ const AudienceViewPage = () => {
       <RightPanelContainer>
         <AudiencePanel
           currentSlide={currentSlide}
-          onSelectSlide={setCurrentSlide}
+          onSelectSlide={handleAudienceSelectSlide}
         />
       </RightPanelContainer>
     </PageContainer>

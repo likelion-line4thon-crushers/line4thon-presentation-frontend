@@ -18,6 +18,8 @@ const SlideViewer = ({
   cursorImage,
   stamps = [],
   onPlace,
+  followPresenter = true,
+  onToggleFollow,
 }) => {
   const boxRef = useRef(null);
   const [isEyesOpen, setIsEyesOpen] = useState(true);
@@ -30,11 +32,20 @@ const SlideViewer = ({
     onPlace({ xPct, yPct });
   };
 
+  const handleToggleFollowChange = (event) => {
+    if (typeof onToggleFollow === "function") {
+      onToggleFollow(event.target.checked);
+    }
+  };
+
   return (
     <Main>
       <FocusBar>
         <div style={{ display: "inline-flex", alignItems: "center", gap: 8 }}>
-          <SingleToggleInput defaultChecked />
+          <SingleToggleInput
+            checked={followPresenter}
+            onChange={handleToggleFollowChange}
+          />
           <ToggleText>발표자와 함께 보기</ToggleText>
         </div>
         <TooltipHoverArea>
