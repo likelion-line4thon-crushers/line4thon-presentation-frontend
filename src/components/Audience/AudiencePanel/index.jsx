@@ -15,8 +15,8 @@ import {
   QuestionInput,
   SubmitButton,
   LockBanner,
+  WaitingMessage,
 } from "./AudiencePanel.styles";
-import GoodSVG from "../../../assets/images/good.svg";
 import LockIcon from "../../../assets/images/lock.png";
 import Arrow from "../../../assets/images/upArrow.png";
 
@@ -47,7 +47,13 @@ const defaultQuestions = [
   },
 ];
 
-const AudiencePanel = ({ currentSlide, onSelectSlide, questions }) => {
+const AudiencePanel = ({
+  currentSlide,
+  onSelectSlide,
+  questions,
+  isWaiting = false,
+  waitingMessage = "세션 대기중입니다.",
+}) => {
   const [questionText, setQuestionText] = useState("");
   const [isInputting, setIsInputting] = useState(false);
   const [isLocked, setIsLocked] = useState(false); // 발표자가 잠금 시 true로 설정
@@ -87,48 +93,54 @@ const AudiencePanel = ({ currentSlide, onSelectSlide, questions }) => {
         <Title>실시간 질문</Title>
       </HeaderBox>
       <Section>
-        <QuestionList>
-          {questionItems.map(({ id, slideIndex, timestamp, text }) => (
-            <QuestionItem key={id} $active={slideIndex === currentSlide}>
-              <HeaderRow>
-                <SlideLabel
-                  type="button"
-                  onClick={() => handleSelectSlide(slideIndex)}
-                  $active={slideIndex === currentSlide}
-                >
-                  슬라이드 {slideIndex + 1}
-                </SlideLabel>
-                <Timestamp>{timestamp}</Timestamp>
-              </HeaderRow>
-
-              <QuestionText>{text}</QuestionText>
-            </QuestionItem>
-          ))}
-
-          {isLocked ? (
-            <LockBanner>
-              <img src={LockIcon} alt="잠금" width={20} height={20} />
-              <span>실시간 질문 기능이 잠겼습니다</span>
-            </LockBanner>
+        <QuestionList $isWaiting={isWaiting}>
+          {isWaiting ? (
+            <WaitingMessage>{waitingMessage}</WaitingMessage>
           ) : (
-            <QuestionInputContainer $isInputting={isInputting}>
-              <QuestionInput
-                value={questionText}
-                onChange={handleInputChange}
-                onKeyDown={handleKeyPress}
-                placeholder="질문 내용을 작성해 주세요"
-                $isInputting={isInputting}
-              />
-              {isInputting && (
-                <SubmitButton onClick={handleSubmit}>
-                  <img src={Arrow} alt="제출" width={28} height={28} />
-                </SubmitButton>
+            <>
+              {questionItems.map(({ id, slideIndex, timestamp, text }) => (
+                <QuestionItem key={id} $active={slideIndex === currentSlide}>
+                  <HeaderRow>
+                    <SlideLabel
+                      type="button"
+                      onClick={() => handleSelectSlide(slideIndex)}
+                      $active={slideIndex === currentSlide}
+                    >
+                      슬라이드 {slideIndex + 1}
+                    </SlideLabel>
+                    <Timestamp>{timestamp}</Timestamp>
+                  </HeaderRow>
+
+                  <QuestionText>{text}</QuestionText>
+                </QuestionItem>
+              ))}
+
+              {isLocked ? (
+                <LockBanner>
+                  <img src={LockIcon} alt="잠금" width={20} height={20} />
+                  <span>실시간 질문 기능이 잠겼습니다</span>
+                </LockBanner>
+              ) : (
+                <QuestionInputContainer $isInputting={isInputting}>
+                  <QuestionInput
+                    value={questionText}
+                    onChange={handleInputChange}
+                    onKeyDown={handleKeyPress}
+                    placeholder="질문 내용을 작성해 주세요"
+                    $isInputting={isInputting}
+                  />
+                  {isInputting && (
+                    <SubmitButton onClick={handleSubmit}>
+                      <img src={Arrow} alt="제출" width={28} height={28} />
+                    </SubmitButton>
+                  )}
+                </QuestionInputContainer>
               )}
-            </QuestionInputContainer>
+            </>
           )}
         </QuestionList>
 
-        <Scrollbar />
+        {!isWaiting && <Scrollbar />}
       </Section>
     </PanelWrapper>
   );

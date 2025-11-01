@@ -124,3 +124,29 @@ export const TooltipHoverArea = styled(TooltipWrapper)`
     opacity: 1;
   }
 `;
+
+export const WaitingState = styled.div`
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  gap: 1.85vh;
+  text-align: center;
+  color: #5c5c5c;
+`;
+
+export const WaitingImage = styled.img`
+  width: clamp(120px, 12vw, 180px);
+  height: auto;
+  object-fit: contain;
+`;
+
+export const WaitingText = styled.p`
+  margin: 0;
+  font-family: Pretendard;
+  font-size: clamp(16px, 1.2vw, 20px);
+  font-weight: 600;
+  line-height: 1.5;
+  letter-spacing: -0.4px;
+  color: #303030;
+`;

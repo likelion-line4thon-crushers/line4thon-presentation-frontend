@@ -32,20 +32,27 @@ export const SlideThumb = styled.div`
   width: 6.7vw; /* 129px */
   height: 6.2vh; /* 67px */
   padding: 0.4vh 0.5vw;
-  border: ${(p) => (p.$active ? "0.1vw solid #4a90e2" : "0.05vw solid #ddd")};
+  border: ${(p) =>
+    p.$waiting
+      ? "0.05vw solid #ddd"
+      : p.$active
+      ? "0.1vw solid #4a90e2"
+      : "0.05vw solid #ddd"};
   border-radius: 0.2vw;
-  background: ${(p) => (p.$active ? "#303030" : "#fff")};
-  cursor: pointer;
+  background: ${(p) => (p.$waiting ? "#fff" : p.$active ? "#303030" : "#fff")};
+  cursor: ${(p) => (p.$waiting ? "default" : "pointer")};
   transition: 0.25s ease;
-  box-shadow: ${(p) => (p.$active ? "0 0.2vh 0.5vh rgba(0,0,0,0.1)" : "none")};
+  box-shadow: ${(p) =>
+    p.$active && !p.$waiting ? "0 0.2vh 0.5vh rgba(0,0,0,0.1)" : "none"};
   position: relative;
 
   &:hover {
-    transform: scale(1.02);
+    transform: ${(p) => (p.$waiting ? "none" : "scale(1.02)")};
   }
 
   ${(p) =>
     p.$active &&
+    !p.$waiting &&
     `
     &::after {
       content: "";
@@ -79,4 +86,12 @@ export const SlideIndex = styled.div`
   align-items: flex-start;
   justify-content: center;
   transition: 0.2s ease;
+`;
+
+export const SlidePlaceholder = styled.div`
+  width: 5.5vw;
+  height: 100%;
+  border-radius: 0.1vw;
+  border: 0.05vw solid #eee;
+  background: #fff;
 `;
