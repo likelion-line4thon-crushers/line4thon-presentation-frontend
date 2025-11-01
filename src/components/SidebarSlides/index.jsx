@@ -1,36 +1,52 @@
 import React from "react";
 import {
-    Sidebar,
-    SlideList,
-    SlideThumb,
-    SlideImage,
-    SlideIndex,
+  Sidebar,
+  SlideList,
+  SlideThumb,
+  SlideImage,
+  SlideIndex,
+  SlidePlaceholder,
 } from "./SidebarSlides.styles";
 
 const SidebarSlides = ({
-    slides,
-    currentSlide,
-    setCurrentSlide,
+  slides,
+  currentSlide,
+  setCurrentSlide,
+  isWaiting = false,
+  placeholderCount = 10,
 }) => {
-    return (
-        <Sidebar>
+  const waitingSlides = Array.from({ length: placeholderCount });
+  const slideItems = isWaiting ? waitingSlides : slides || [];
 
-            <SlideList>
-                {slides.map((slide, i) => (
-                    <SlideThumb
-                        key={i}
-                        $active={i === currentSlide}
-                        onClick={() => setCurrentSlide(i)}
-                    >
-                        <SlideImage src={slide} alt={`슬라이드 ${i + 1}`} />
-                        {/* <SlideIndex>{i + 1}</SlideIndex> */}
-                        <SlideIndex $active={i === currentSlide}>{i + 1}</SlideIndex>
-                        
-                    </SlideThumb>
-                ))}
-            </SlideList>
-        </Sidebar>
-    );
+  const handleSelectSlide = (index) => {
+    if (isWaiting || typeof setCurrentSlide !== "function") return;
+    setCurrentSlide(index);
+  };
+
+  return (
+    <Sidebar>
+      <SlideList>
+        {slideItems.map((slide, i) => (
+          <SlideThumb
+            key={i}
+            $active={!isWaiting && i === currentSlide}
+            $waiting={isWaiting}
+            onClick={() => handleSelectSlide(i)}
+          >
+            {isWaiting ? (
+              <SlidePlaceholder />
+            ) : (
+              <SlideImage src={slide} alt={`슬라이드 ${i + 1}`} />
+            )}
+            {/* <SlideIndex>{i + 1}</SlideIndex> */}
+            <SlideIndex $active={!isWaiting && i === currentSlide}>
+              {i + 1}
+            </SlideIndex>
+          </SlideThumb>
+        ))}
+      </SlideList>
+    </Sidebar>
+  );
 };
 
 export default SidebarSlides;

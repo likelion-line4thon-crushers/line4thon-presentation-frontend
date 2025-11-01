@@ -49,6 +49,8 @@ export const QuestionList = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
+  justify-content: ${(props) => (props.$isWaiting ? "center" : "flex-start")};
+  text-align: center;
 
   &::-webkit-scrollbar {
     width: 0.31vw;
@@ -148,6 +150,17 @@ export const Scrollbar = styled.div`
   right: 0.42vw;
   top: 5.56vh;
   bottom: 1.85vh;
+`;
+
+export const WaitingMessage = styled.div`
+  color: #5c5c5c;
+  font-family: Pretendard;
+  font-size: 14px;
+  font-style: normal;
+  font-weight: 500;
+  line-height: 21px;
+  letter-spacing: -0.35px;
+  white-space: pre-line;
 `;
 
 export const LockBanner = styled.div`

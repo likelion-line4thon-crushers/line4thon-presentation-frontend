@@ -1,4 +1,4 @@
-import React, { useRef, useState } from "react";
+import React, { useRef } from "react";
 import {
   Main,
   SlideBox,
@@ -8,13 +8,16 @@ import {
   TooltipHoverArea,
   Tooltip,
   SingleToggleInput,
+  WaitingState,
+  WaitingImage,
+  WaitingText,
 } from "./SlideViewer_audience.styles";
 import openeyes from "../../../assets/images/openeyes.png";
 import closeeyes from "../../../assets/images/closeeyes.png";
 
 const SlideViewer = ({
-  slides,
-  currentSlide,
+  slides = [],
+  currentSlide = 0,
   cursorImage,
   stamps = [],
   onPlace,
@@ -22,11 +25,19 @@ const SlideViewer = ({
   onToggleFollow,
   showStamps = true,
   onToggleShowStamps,
+  isWaiting = false,
+  waitingImage,
+  waitingMessage = "현재 라이브 대기중입니다.",
 }) => {
   const boxRef = useRef(null);
+  const hasSlides = Array.isArray(slides) && slides.length > 0;
+  const safeSlideIndex = hasSlides
+    ? Math.min(Math.max(currentSlide, 0), slides.length - 1)
+    : 0;
+  const currentSlideSrc = hasSlides ? slides[safeSlideIndex] : null;
 
   const handleClick = (e) => {
-    if (!onPlace || !boxRef.current) return;
+    if (isWaiting || !onPlace || !boxRef.current) return;
     const rect = boxRef.current.getBoundingClientRect();
     const xPct = ((e.clientX - rect.left) / rect.width) * 100;
     const yPct = ((e.clientY - rect.top) / rect.height) * 100;
@@ -34,12 +45,14 @@ const SlideViewer = ({
   };
 
   const handleToggleFollowChange = (event) => {
+    if (isWaiting) return;
     if (typeof onToggleFollow === "function") {
       onToggleFollow(event.target.checked);
     }
   };
 
   const handleToggleEyesClick = () => {
+    if (isWaiting) return;
     if (typeof onToggleShowStamps === "function") {
       onToggleShowStamps(!showStamps);
     }
@@ -52,40 +65,57 @@ const SlideViewer = ({
           <SingleToggleInput
             checked={followPresenter}
             onChange={handleToggleFollowChange}
+            disabled={isWaiting}
           />
           <ToggleText>발표자와 함께 보기</ToggleText>
         </div>
-        <TooltipHoverArea>
-          <Tooltip>리액션 스티커 보이기</Tooltip>
-          <ReactionButton onClick={handleToggleEyesClick}>
-            <img
-              src={showStamps ? openeyes : closeeyes}
-              alt={showStamps ? "openeyes" : "closeeyes"}
-            />
-          </ReactionButton>
-        </TooltipHoverArea>
+        {!isWaiting && (
+          <TooltipHoverArea>
+            <Tooltip>리액션 스티커 보이기</Tooltip>
+            <ReactionButton onClick={handleToggleEyesClick}>
+              <img
+                src={showStamps ? openeyes : closeeyes}
+                alt={showStamps ? "openeyes" : "closeeyes"}
+              />
+            </ReactionButton>
+          </TooltipHoverArea>
+        )}
       </FocusBar>
 
       <SlideBox
         ref={boxRef}
         onClick={handleClick}
         style={{
-          cursor: cursorImage ? `url(${cursorImage}) 16 16, auto` : "auto",
+          cursor: isWaiting
+            ? "default"
+            : cursorImage
+            ? `url(${cursorImage}) 16 16, auto`
+            : "auto",
         }} //마우스 포인터 변경
       >
-        <img
-          src={slides[currentSlide]}
-          alt={`슬라이드 ${currentSlide + 1}`}
-          style={{
-            width: "100%",
-            height: "100%",
-            objectFit: "contain",
-            userSelect: "none",
-            pointerEvents: "none",
-            display: "block",
-          }}
-        />
-        {showStamps &&
+        {isWaiting ? (
+          <WaitingState>
+            {waitingImage && <WaitingImage src={waitingImage} alt="대기 중" />}
+            <WaitingText>{waitingMessage}</WaitingText>
+          </WaitingState>
+        ) : (
+          currentSlideSrc && (
+            <img
+              src={currentSlideSrc}
+              alt={`슬라이드 ${safeSlideIndex + 1}`}
+              style={{
+                width: "100%",
+                height: "100%",
+                objectFit: "contain",
+                userSelect: "none",
+                pointerEvents: "none",
+                display: "block",
+              }}
+            />
+          )
+        )}
+        {!isWaiting &&
+          showStamps &&
           stamps.map((stamp, idx) => (
             <img
               key={`${stamp.xPct}-${stamp.yPct}-${idx}`}
