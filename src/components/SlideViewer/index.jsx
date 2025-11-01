@@ -1,7 +1,6 @@
 import React from "react";
 import {
   Main,
-  SlideBox,
   FocusBar,
   FocusGroupLeft,
   FocusLeft,
@@ -18,6 +17,7 @@ import {
   TimerButton,
 } from "./SlideViewer.styles";
 
+import SlideContainer from "./SlideContainer";
 import FocusIcon from "../../assets/images/focus.svg";
 import LogoIcon from "../../assets/images/emoji1_black.svg";
 import TimerIcon from "../../assets/images/timer.svg";
@@ -84,18 +84,11 @@ const SlideViewer = ({
         </FocusRight>
       </FocusBar>
 
-      {/* 슬라이드 */}
-      <SlideBox>
-        <img
-          src={slides[currentSlide]}
-          alt={`슬라이드 ${currentSlide + 1}`}
-          style={{
-            maxWidth: "100%",
-            borderRadius: "8px",
-            border: "1px solid #eee",
-          }}
-        />
-      </SlideBox>
+      {/* 🔹 슬라이드 */}
+      <SlideContainer
+        src={slides[currentSlide]}
+        alt={`슬라이드 ${currentSlide + 1}`}
+      />
     </Main>
   );
 };

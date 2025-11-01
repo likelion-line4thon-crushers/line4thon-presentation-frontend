@@ -26,7 +26,7 @@ export const FocusGroupLeft = styled.div`
   display: flex;
   align-items: center;
   justify-content: flex-start;
-  gap: 1vw; /* 버튼과 바 간격 */
+  gap: 1vw;
 `;
 
 /* 집중유도 버튼 */
@@ -61,10 +61,10 @@ export const LegendContainer = styled.div`
   font-size: clamp(11px, 0.8vw, 14px);
 `;
 
-/* 집중도 막대 (짧게) */
+/* 집중도 막대 */
 export const AudienceBar = styled.div`
   display: flex;
-  width: 5vw; /* ✅ 짧게 */
+  width: 5vw;
   height: 2vh;
   border-radius: 0.4vh;
   overflow: hidden;
@@ -76,22 +76,25 @@ export const SegmentPrev = styled.div`
   background: #c53b2c;
   transition: width 0.3s ease;
 `;
+
 export const SegmentCurrent = styled.div`
   width: ${(p) => p.width}%;
   background: #ffffff;
   transition: width 0.3s ease;
 `;
+
 export const SegmentNext = styled.div`
   width: ${(p) => p.width}%;
   background: #4467ff;
   transition: width 0.3s ease;
 `;
+
 export const SegmentDefault = styled.div`
   width: 100%;
   background: #666;
 `;
 
-/* 범례 항목 */
+/* 범례 */
 export const LegendItem = styled.div`
   display: flex;
   font-size: clamp(10px, 0.7vw, 12px);
@@ -115,7 +118,7 @@ export const FocusRight = styled.div`
 `;
 
 export const IconButton = styled.button`
-  background: #FAFAFA;
+  background: #fafafa;
   border: 0.05vw solid #eaeaea;
   border-radius: 50%;
   width: 2.5vw;
@@ -130,21 +133,11 @@ export const TimerButton = styled.div`
   display: flex;
   align-items: center;
   gap: 0.2vw;
-  height:3.3vh;
-  background: #FAFAFA;
+  height: 3.3vh;
+  background: #fafafa;
   border: 0.05vw solid #eaeaea;
   border-radius: 2vw;
   padding: 0.8vh 1vw;
   font-size: clamp(14px, 1vw, 18px);
   color: #5c5c5c;
-`;
-
-/* 슬라이드 */
-export const SlideBox = styled.div`
-  background-color: white;
-  border-radius: 0.6vw;
-  border: 0.05vw solid #ddd;
-  max-width: 67.7vw;
-  width: 100%;
-  text-align: center;
 `;
