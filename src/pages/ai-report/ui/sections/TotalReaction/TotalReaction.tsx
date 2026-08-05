@@ -64,7 +64,7 @@ const TotalReaction = ({
   return (
     <TotalReactionContainer>
       <TitleContainer>
-        <img src={ReportTitle} alt="AI 보고서" />
+        <img src={ReportTitle} alt="" />
         <h1>AI 보고서</h1>
         <h2>{fileName || "파일명.pdf"}</h2>
       </TitleContainer>

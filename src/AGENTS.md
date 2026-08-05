@@ -34,7 +34,7 @@ from outside the slice.
 
 ## Layers
 
-- `app/` — router (`router.tsx`), app shell, `PresenterRoomGate`
+- `app/` — router (`router.tsx`), app shell, `PresenterRoomGate`, `RouteMeta` (route `handle` → document title/robots)
 - `shared/` — `api/` (all HTTP + WebSocket), `lib/` (pure utils, `createLogger`),
   `config/` (storage keys), `ui/` (generic components), `assets/`
 - `entities/` — question, reaction, room, session, slide, slide-note
