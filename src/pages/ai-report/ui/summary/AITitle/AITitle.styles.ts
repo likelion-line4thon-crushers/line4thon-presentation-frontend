@@ -7,7 +7,7 @@ export const AITitleWrapper = styled.div`
   padding-right: 2.8vw;
 `;
 
-export const TitleText = styled.h1`
+export const TitleText = styled.h2`
   color: #000;
   font-size: 32px;
   font-style: normal;

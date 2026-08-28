@@ -17,7 +17,7 @@ export const HeaderRow = styled.div`
   padding-right: ${RIGHT_GUTTER};
 `;
 
-export const SectionTitle = styled.h1`
+export const SectionTitle = styled.h2`
   color: #000;
   font-size: 32px;
   font-weight: 600;

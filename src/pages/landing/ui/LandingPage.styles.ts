@@ -11,6 +11,19 @@ export const PageScroll = styled.div`
   word-break: keep-all;
 `;
 
+/* 히어로 제목이 SVG 라 DOM 에 텍스트가 없다 — 문서 개요용 h1 을 화면에서만 감춘다 */
+export const HeroHeading = styled.h1`
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  margin: -1px;
+  padding: 0;
+  overflow: hidden;
+  clip-path: inset(50%);
+  white-space: nowrap;
+  border: 0;
+`;
+
 /* === 랜딩 자체 헤더 — 일반 흐름(스크롤과 함께 올라간다), 피그마: 65px / 로고 32px === */
 export const TopBar = styled.header`
   display: flex;

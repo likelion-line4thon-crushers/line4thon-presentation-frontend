@@ -1,0 +1,8 @@
+User-agent: *
+Allow: /
+
+Disallow: /rooms/
+Disallow: /join/
+Disallow: /audience/
+
+Sitemap: https://boini.kr/sitemap.xml

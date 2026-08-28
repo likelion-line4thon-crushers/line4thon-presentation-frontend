@@ -311,18 +311,19 @@ const MainPage = () => {
         <S.CenterGrid>
           {/* 1행 */}
           <S.Box $area="e1">
-            <img src={Emoji1} alt="emoji1" />
+            <img src={Emoji1} alt="" />
           </S.Box>
           <S.Box $striped $area="s1" />
           <S.Box $area="e2">
-            <img src={Emoji2} alt="emoji2" />
+            <img src={Emoji2} alt="" />
           </S.Box>
           {/* 2행 */}
           <S.Box $striped $area="s2" />
           <S.CenterContent>
+            <S.HeroHeading>청중이 보이니, 발표가 달라진다</S.HeroHeading>
             <img
               src={TitleSVG}
-              alt="발표가 달라진다"
+              alt=""
               style={{ width: "95%", height: "auto", maxHeight: "22vh" }}
             />
 
@@ -486,11 +487,11 @@ const MainPage = () => {
           <S.Box $striped $area="s3" />
           {/* 3행 */}
           <S.Box $area="e3">
-            <img src={Emoji3} alt="emoji3" />
+            <img src={Emoji3} alt="" />
           </S.Box>
           <S.Box $striped $area="s4" />
           <S.Box $area="e4">
-            <img src={Emoji4} alt="emoji4" />
+            <img src={Emoji4} alt="" />
           </S.Box>
         </S.CenterGrid>
 
